@@ -1,9 +1,65 @@
+
+
+.container {
+    max-width: 960px;  /* or however much you want */
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 800px) {
+    .container { max-width: 768px; }
+}
+  
+@media screen and (max-width: 1200px) {
+    .container { max-width: 960px; }
+}
+  
+
 body {
-    background-color: powderblue;
-  }
-  h1 {
-    color: blue;
-  }
-  p {
-    color: red;
-  }
+    background-color: #303030;
+
+}
+
+hr.solid {
+    border-top: 2px #ffc800;
+}
+
+h1 {
+    color: #ffffff;
+    text-align: center;
+    font-size: 72px;
+    font-family: 'Raleway', sans-serif;
+}
+
+h2 {
+    margin: 10px 25px;
+    color: #c0c0c0;
+    text-decoration: underline;
+    font-size: 36px;
+    font-family: 'Raleway', sans-serif;
+}
+
+h3 {
+    margin: 0px 50px;
+    color: #c0c0c0;
+    text-decoration: underline;
+    line-height: 1.5;
+    font-size: 24px;
+    font-family: 'Raleway', sans-serif;
+}
+
+p {
+    margin: 25px 50px 25px 50px;
+    color: #c0c0c0;
+    line-height: 1.5;
+    font-size: 12px;
+    font-family: 'Raleway', sans-serif;
+}
+
+div {
+    margin: 25px 75px 25px 75px;
+    color: #c0c0c0;
+    line-height: 1.5;
+    font-size: 14px;
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+}
