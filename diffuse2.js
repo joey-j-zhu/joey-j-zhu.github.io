@@ -1,34 +1,36 @@
+// I haven't figured out Node.js yet so to I'm just copy-pasting the other js file.
+
 // ALL Grids take on this size
 
 var X = 0;
 var Y = 1;
 
-var SIZE = [36, 18];
+var SIZE = [48, 24];
 
-var MOUSE_RANGE = [10, 10];
+var MOUSE_RANGE = [20, 20];
 var RAND_RANGE = 1;
 
 var FEED_RATE = 0.2;
-var FADE_RATE = 0.985;
+var FADE_RATE = 1;
 
-var SWAPS = 50; // Number of diffusion swaps per frame
-var MIX_COEF = 0.99; // Amount of mixing per frame
+var SWAPS = 60; // Number of diffusion swaps per frame
+var MIX_COEF = 0.75; // Amount of mixing per frame
 
 var MOVE_RATE = 0.2;
 
 var VFADE_RATE = 1;
-var VWEIGHT = 5;
+var VWEIGHT = 100000000;
 
 var G0 = [0, 0];
 var G1 = [960, 480];
 var CELL_SIZE = [(G1[X] - G0[X]) / SIZE[X], (G1[Y] - G0[Y]) / SIZE[Y]];
 
-var RAD = 25;
-var BASE = 5;
+var RAD = 48;
+var BASE = 1;
 
 // The window size when calculating moving averages for smoothing
-var MOUSE_BUFFER = 5;
-var GRID_BUFFER = 5;
+var MOUSE_BUFFER = 10;
+var GRID_BUFFER = 15;
 
 var BASE_COLOR = "#606060";
 var BG_COLOR = "404040";
@@ -72,7 +74,7 @@ function gridSample() {
 function boxSample(c, d) {
     var dx = randint(0 - d, d + 1);
     var dy = randint(0 - d, d + 1);
-    return [c[X] + dx, c[Y] + dy];
+    return clip([c[X] + dx, c[Y] + dy]);
 }
 
 
@@ -87,9 +89,7 @@ function stoc(n) {
 }
 
 function neighbor(c, d, v) {
-    //console.log(stoc(v[X]), stoc(v[Y]));
-    //return boxSample([c[X] + stoc(v[X]), c[Y] + stoc(v[Y])], d);
-    return boxSample(c, d);
+    return boxSample([c[X] + stoc(v[X]), c[Y] + stoc(v[Y])], d);
 }
 
 
@@ -115,17 +115,17 @@ function step(arr, d, diffusion, vx, vy) {
     var nc;
     var c = gridSample();
     //console.log(vx[c[Y]][c[X]], vy[c[Y]][c[X]]);
-
-    nc = neighbor(c, d, vx[c[Y]][c[X]], vy[c[Y]][c[X]]);
-    if (nc[X] == clip(nc)[X] && nc[Y] == clip(nc)[Y]) {
+    nc = neighbor(c, d, [vx[c[Y]][c[X]], vy[c[Y]][c[X]]]);
+    if (nc == clip(nc)) {
         // If the neighbor is valid, mix
-        transfer(arr, c[X], c[Y], Math.floor(nc[X]), Math.floor(nc[Y]), diffusion, diffusion);
+        transfer(arr, c[X], c[Y], nc[X], nc[Y], diffusion, diffusion);
     } else {
         // Else, just drain
-        console.log("drained");
         arr[c[Y]][c[X]] *= (1 - diffusion);
     }
 }
+
+
 
 
 
@@ -155,12 +155,13 @@ function heat(grid, c) {
     var bx = Math.min(SIZE[X] - 1, (c[X] + MOUSE_RANGE[X]) + 1);
     var ay = Math.max(0, c[Y] - MOUSE_RANGE[Y]);
     var by = Math.min(SIZE[Y] - 1, (c[Y] + MOUSE_RANGE[Y]) + 1);
+    console.log(ax, c[X], c[Y]);
     for (var x = ax; x <= bx; x++) {
         for (var y = ay; y < by; y++) {
             var dx = x - c[X];
             var dy = y - c[Y];
             var r2 = dx * dx + dy * dy;
-            grid[y][x] = grid[y][x] + FEED_RATE * Math.random() / (r2 + 1);
+            grid[y][x] = grid[y][x] + FEED_RATE / (r2 + 1);
         }
     }
 }
@@ -271,7 +272,7 @@ function addGridFrame(newGrid) {
 
 canvasSize = [G1[X] - G0[X], G1[Y] - G0[Y]];
 
-var canvas = document.getElementById("myCanvas");
+var canvas = document.getElementById("myCanvas2");
 var ctx = canvas.getContext("2d");
 var ticks = 0;
 
@@ -280,9 +281,6 @@ var ticks = 0;
 var mainGrid = grid(SIZE);
 var vxGrid = grid(SIZE);
 var vyGrid = grid(SIZE);
-
-
-// Shapes and colors
 
 function drawCircle(canvas, c, radius) {
     canvas.beginPath();
@@ -294,7 +292,7 @@ function drawCircle(canvas, c, radius) {
 function drawRect(canvas, c0, c1, color) {
     canvas.beginPath();
     canvas.rect(c0[X], c0[Y], c1[X], c1[Y]);
-    canvas.fillStyle = color;
+    canvas.fillStyle = BASE_COLOR;
     canvas.fill();
 }
 
@@ -303,43 +301,27 @@ function drawCross(canvas, center, length, thickness, color) {
     drawRect(canvas, [center[X] - length, center[Y] - thickness], [length * 2, thickness * 2], color);
 }
 
-function componentToHex(c) {
-    var hex = c.toString(16);
-    return hex.length == 1 ? "0" + hex : hex;
-}
-
-// RGB values are in range [0, 1)]
-function rgbToHex(r, g, b) {
-    return "#" + componentToHex(Math.floor(r * 256)) + componentToHex(Math.floor(g * 256)) + componentToHex(Math.floor(b * 256));
-}
-
 function headline(canvas, message) {
     canvas.font = "96px Raleway";
     canvas.textAlign = "center";
     canvas.fillStyle = "#282828";
-    canvas.fillText(message, (G1[X] - G0[X]) / 2, (G1[Y] - G0[Y]) / 2 + SHADOW_OFFSET + 24);
+    canvas.fillText(message, (G1[X] - G0[X]) / 2, (G1[Y] - G0[Y]) / 2 + SHADOW_OFFSET);
     canvas.fillStyle = "#ffffff";
-    canvas.fillText(message, (G1[X] - G0[X]) / 2, (G1[Y] - G0[Y]) / 2 + 24);
+    canvas.fillText(message, (G1[X] - G0[X]) / 2, (G1[Y] - G0[Y]) / 2);
 }
 
 // Displays an array of shapes with parameters from the smoothed-out grid
 // TODO: y loop cut short because last one doesn't render. Fix it
 function render(canvas, grid) {
     var c;
-    var l;
-    for (var y = 0; y < SIZE[Y]; y++) {
+    for (var y = 0; y < SIZE[Y] - 1; y++) {
         for (var x = 0; x < SIZE[X]; x++) {
-            l = BASE + RAD * (grid[y][x] - 0.15) * 2;
             c = localToGlobal([x + 0.5, y + 0.5]);
-            drawCross(canvas, c, l, 1, rgbToHex(0.3 + 0.007 * (x + y), 0.25 + 0.004 * (x + y), 0.5 - 0.006 * (x + y)));
+            drawCross(canvas, c, BASE + RAD * grid[y][x], 1, BASE_COLOR);
             //drawCircle(canvas, c, BASE + RAD * grid[y][x]);
         }
     }
     headline(canvas, "JOEY ZHU");
-}
-
-function mag2(c) {
-    return c[X] * c[X] + c[Y] * c[Y];
 }
 
 // Updates the grid
@@ -354,14 +336,10 @@ function update() {
     }
 
     // Update 
-    pull(mainGrid, globalToLocal([smoothC[X], smoothC[Y]]), 1);
-    var vel = globalToLocal(mouseV());
-
-    // Make functions
-    if (mag2(vel) > 0.02) {
-        pull(vxGrid, globalToLocal(smoothC), VWEIGHT * vel[X]);
-        pull(vyGrid, globalToLocal(smoothC), VWEIGHT * vel[Y]);
-    }
+    pull(mainGrid, globalToLocal(smoothC), 1);
+    var vel = globalToLocal(mouseV())
+    heat(vxGrid, globalToLocal(smoothC), VWEIGHT * vel[X]);
+    heat(vyGrid, globalToLocal(smoothC), VWEIGHT * vel[Y]);
 
     for (var y = 0; y < SIZE[Y]; y++) {
         for (var x = 0; x < SIZE[X]; x++) {
