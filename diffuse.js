@@ -2,37 +2,42 @@
 
 var X = 0;
 var Y = 1;
+var T = 35;
 
-var SIZE = [36, 18];
+var SIZE = [40, 20];
 
 var MOUSE_RANGE = [10, 10];
 var RAND_RANGE = 1;
 
 var FEED_RATE = 0.2;
-var FADE_RATE = 0.985;
+var FADE_RATE = 0.98;
 
-var SWAPS = 50; // Number of diffusion swaps per frame
-var MIX_COEF = 0.99; // Amount of mixing per frame
+var SWAPS = 100; // Number of diffusion swaps per frame
+var MIX_COEF = 0.5; // Amount of mixing per frame
 
 var MOVE_RATE = 0.2;
 
 var VFADE_RATE = 1;
-var VWEIGHT = 5;
+var VWEIGHT = 25;
 
 var G0 = [0, 0];
-var G1 = [960, 480];
+var G1 = [960, 540];
 var CELL_SIZE = [(G1[X] - G0[X]) / SIZE[X], (G1[Y] - G0[Y]) / SIZE[Y]];
 
-var RAD = 25;
-var BASE = 5;
+var RAD = 15;
+var BASE = 0;
 
 // The window size when calculating moving averages for smoothing
 var MOUSE_BUFFER = 5;
-var GRID_BUFFER = 5;
+var GRID_BUFFER = 8;
 
 var BASE_COLOR = "#606060";
-var BG_COLOR = "404040";
+var BG_COLOR = "#101010";
 var SHADOW_OFFSET = 5;
+
+function sigmoid(input) {
+    return 1 / (1 + Math.exp(input * -1))
+}
 
 
 
@@ -78,7 +83,7 @@ function boxSample(c, d) {
 
 function stoc(n) {
     var fn = Math.floor(n);
-    var d = self.flip(n - fn);
+    var d = flip(n - fn);
     if (d == true) {
         return fn + 1;
     } else {
@@ -87,9 +92,9 @@ function stoc(n) {
 }
 
 function neighbor(c, d, v) {
-    //console.log(stoc(v[X]), stoc(v[Y]));
-    //return boxSample([c[X] + stoc(v[X]), c[Y] + stoc(v[Y])], d);
-    return boxSample(c, d);
+    
+    return boxSample(clip([c[X] + stoc(v[X]), c[Y] + stoc(v[Y])]), 0);
+    //return boxSample(c, d);
 }
 
 
@@ -114,15 +119,13 @@ function transfer(arr, x1, y1, x2, y2, amt1, amt2) {
 function step(arr, d, diffusion, vx, vy) {
     var nc;
     var c = gridSample();
-    //console.log(vx[c[Y]][c[X]], vy[c[Y]][c[X]]);
-
-    nc = neighbor(c, d, vx[c[Y]][c[X]], vy[c[Y]][c[X]]);
+    nc = neighbor(c, d, [vx[c[Y]][c[X]], vy[c[Y]][c[X]]]);
     if (nc[X] == clip(nc)[X] && nc[Y] == clip(nc)[Y]) {
         // If the neighbor is valid, mix
         transfer(arr, c[X], c[Y], Math.floor(nc[X]), Math.floor(nc[Y]), diffusion, diffusion);
+        console.log(nc[X] - c[X]);
     } else {
         // Else, just drain
-        console.log("drained");
         arr[c[Y]][c[X]] *= (1 - diffusion);
     }
 }
@@ -299,8 +302,8 @@ function drawRect(canvas, c0, c1, color) {
 }
 
 function drawCross(canvas, center, length, thickness, color) {
-    drawRect(canvas, [center[X] - thickness, center[Y] - length], [thickness * 2, length * 2], color);
-    drawRect(canvas, [center[X] - length, center[Y] - thickness], [length * 2, thickness * 2], color);
+    drawRect(canvas, [center[X] - thickness, center[Y] - length], [thickness, length * 2 - thickness], color);
+    drawRect(canvas, [center[X] - length, center[Y] - thickness], [length * 2 - thickness, thickness], color);
 }
 
 function componentToHex(c) {
@@ -313,10 +316,14 @@ function rgbToHex(r, g, b) {
     return "#" + componentToHex(Math.floor(r * 256)) + componentToHex(Math.floor(g * 256)) + componentToHex(Math.floor(b * 256));
 }
 
+function nrgbToHex(r, g, b) {
+    return "#" + componentToHex(Math.floor(256 - r * 256)) + componentToHex(Math.floor(256 - g * 256)) + componentToHex(Math.floor(256 - b * 256));
+}
+
 function headline(canvas, message) {
     canvas.font = "96px Raleway";
     canvas.textAlign = "center";
-    canvas.fillStyle = "#282828";
+    canvas.fillStyle = "#080808";
     canvas.fillText(message, (G1[X] - G0[X]) / 2, (G1[Y] - G0[Y]) / 2 + SHADOW_OFFSET + 24);
     canvas.fillStyle = "#ffffff";
     canvas.fillText(message, (G1[X] - G0[X]) / 2, (G1[Y] - G0[Y]) / 2 + 24);
@@ -329,9 +336,21 @@ function render(canvas, grid) {
     var l;
     for (var y = 0; y < SIZE[Y]; y++) {
         for (var x = 0; x < SIZE[X]; x++) {
-            l = BASE + RAD * (grid[y][x] - 0.15) * 2;
+            l = BASE + RAD * (grid[y][x]) * 2;
             c = localToGlobal([x + 0.5, y + 0.5]);
-            drawCross(canvas, c, l, 1, rgbToHex(0.3 + 0.007 * (x + y), 0.25 + 0.004 * (x + y), 0.5 - 0.006 * (x + y)));
+
+            var r = 0.4 + 0.006 * (x + y) + 0.05 * Math.sin(ticks / T);
+            var g = 0.3 + 0.004 * (x - y) + 0.04 * Math.cos(ticks / T);
+            var b = 0.5 - 0.006 * (x / 2 + y) - 0.1 * Math.sin(ticks / T * 2);
+            
+            if (grid[y][x] < 0) {
+                r = 1 - r;
+                g = 1 - g;
+                b = 1 - b;
+            }
+
+            var hex = rgbToHex(r, g, b);
+            drawCross(canvas, c, Math.min(12, Math.abs(l)), 1.5, hex);
             //drawCircle(canvas, c, BASE + RAD * grid[y][x]);
         }
     }
@@ -354,11 +373,11 @@ function update() {
     }
 
     // Update 
-    pull(mainGrid, globalToLocal([smoothC[X], smoothC[Y]]), 1);
+    //pull(mainGrid, globalToLocal([smoothC[X], smoothC[Y]]), 0.5);
     var vel = globalToLocal(mouseV());
 
     // Make functions
-    if (mag2(vel) > 0.02) {
+    if (mag2(vel) > 0) {
         pull(vxGrid, globalToLocal(smoothC), VWEIGHT * vel[X]);
         pull(vyGrid, globalToLocal(smoothC), VWEIGHT * vel[Y]);
     }
@@ -370,6 +389,35 @@ function update() {
             vyGrid[y][x] = vyGrid[y][x] * VFADE_RATE;
         }
     }
+
+    if (ticks % 6 == 0) {
+        var fx = randint(0, SIZE[X] - 1);
+        var fy = randint(0, SIZE[Y] - 1);
+
+        var vx = (Math.random() - 0.5) * 5;
+        var vy = (Math.random() - 0.5) * 5;
+        var size = Math.random() * 15;
+
+        var dx = (Math.random() - 0.5) * 5;
+        var dy = (Math.random() - 0.5) * 5;
+
+        //mainGrid[fy][fx] += 0.5 * Math.random();
+        pull(mainGrid, [fx, fy], size);
+        pull(vxGrid, [fx, fy], -vx * VWEIGHT);
+        pull(vyGrid, [fx, fy], -vy * VWEIGHT);
+        
+        fx += dx * 2;
+        fy += dy * 2;
+        var f = clip([fx, fy]);
+        fx = f[X];
+        fy = f[Y];
+
+        //mainGrid[fy][fx] += 0.5 * Math.random();
+        pull(mainGrid, [fx, fy], -size);
+        pull(vxGrid, [fx, fy], vx * VWEIGHT);
+        pull(vyGrid, [fx, fy], vy * VWEIGHT);
+    }
+
     ticks++;
 }
 
