@@ -3,8 +3,8 @@ img.pfp {
 }
 
 
-#wrapper { height: 300px; overflow: auto; width: 960px; scrollbar-color: #87ceeb #ff5621;}
-img.gallery {height: 200px; float: left; margin: 25px 5px 25px 5px;}
+#wrapper { height: 310px; overflow: auto; width: 960px; scrollbar-color: #87ceeb #ff5621;}
+img.gallery {height: 250px; float: left; margin: 10px 5px 10px 5px;}
 #innerwrapper { width: 2880px; scrollbar-color: #87ceeb #ff5621;}​
 
 .scrollable-element {
@@ -26,7 +26,7 @@ img.gallery {height: 200px; float: left; margin: 25px 5px 25px 5px;}
   
 
 body {
-  background-image: linear-gradient(#101014, #30303C);
+  background-image: url("gallery/assets/web_background.png");
 }
 
 
@@ -54,7 +54,7 @@ a:hover {
 
 
 h1 {
-    color: #ffffff;
+    color: #080808;
     width: 960px;
     text-align: center;
     font-size: 72px;
@@ -64,7 +64,7 @@ h1 {
 h2 {
     margin: 100px 25px 10px 25px;
     width: 960px;
-    color: #c0c0c0;
+    color: #181818;
     text-decoration: underline;
     text-align: center;
     font-size: 36px;
@@ -74,7 +74,7 @@ h2 {
 h3 {
     margin: 0px 50px;
     width: 960px;
-    color: #c0c0c0;
+    color: #181818;
     text-align: center;
     line-height: 1.5;
     font-size: 24px;
@@ -84,7 +84,7 @@ h3 {
 p {
     margin: 25px 25px 25px 25px;
     width: 960px;
-    color: #c0c0c0;
+    color: #181818;
     text-align: center;
     line-height: 1.5;
     font-size: 16px;
@@ -92,7 +92,7 @@ p {
 }
 
 div {
-    color: #c0c0c0;
+    color: #181818;
     margin: 25px 25px 25px 25px;
     width: 960px;
     line-height: 1.5;

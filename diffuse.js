@@ -4,21 +4,21 @@ var X = 0;
 var Y = 1;
 var T = 35;
 
-var SIZE = [40, 20];
+var SIZE = [48, 24];
 
 var MOUSE_RANGE = [10, 10];
 var RAND_RANGE = 1;
 
 var FEED_RATE = 0.2;
-var FADE_RATE = 0.98;
+var FADE_RATE = 0.99;
 
-var SWAPS = 100; // Number of diffusion swaps per frame
-var MIX_COEF = 0.5; // Amount of mixing per frame
+var SWAPS = 300; // Number of diffusion swaps per frame
+var MIX_COEF = 0.8; // Amount of mixing per frame
 
 var MOVE_RATE = 0.2;
 
 var VFADE_RATE = 1;
-var VWEIGHT = 25;
+var VWEIGHT = 10;
 
 var G0 = [0, 0];
 var G1 = [960, 540];
@@ -350,7 +350,7 @@ function render(canvas, grid) {
             }
 
             var hex = rgbToHex(r, g, b);
-            drawCross(canvas, c, Math.min(12, Math.abs(l)), 1.5, hex);
+            drawCross(canvas, c, Math.min(10, Math.abs(l)), 1.5, hex);
             //drawCircle(canvas, c, BASE + RAD * grid[y][x]);
         }
     }
@@ -390,7 +390,7 @@ function update() {
         }
     }
 
-    if (ticks % 6 == 0) {
+    if (ticks % 4 == 0) {
         var fx = randint(0, SIZE[X] - 1);
         var fy = randint(0, SIZE[Y] - 1);
 
