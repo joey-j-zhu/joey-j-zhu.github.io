@@ -340,7 +340,7 @@ function render(canvas, grid) {
             c = localToGlobal([x + 0.5, y + 0.5]);
 
             var r = 0.4 + 0.006 * (x + y) + 0.05 * Math.sin(ticks / T);
-            var g = 0.3 + 0.004 * (x - y) + 0.04 * Math.cos(ticks / T);
+            var g = 0.2 + 0.002 * (x - y) + 0.04 * Math.cos(ticks / T);
             var b = 0.5 - 0.006 * (x / 2 + y) - 0.1 * Math.sin(ticks / T * 2);
             
             if (grid[y][x] < 0) {

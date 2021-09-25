@@ -1,4 +1,15 @@
+img.pfp {
+  border-radius: 50%;
+}
 
+
+#wrapper { height: 300px; overflow: auto; width: 960px; scrollbar-color: #87ceeb #ff5621;}
+img.gallery {height: 200px; float: left; margin: 25px 5px 25px 5px;}
+#innerwrapper { width: 2880px; scrollbar-color: #87ceeb #ff5621;}​
+
+.scrollable-element {
+  scrollbar-color: red yellow;
+}
 
 .container {
     max-width: 960px;  /* or however much you want */
@@ -15,7 +26,7 @@
   
 
 body {
-  background-image: linear-gradient(#202024, #000000);
+  background-image: linear-gradient(#101014, #30303C);
 }
 
 
@@ -35,6 +46,10 @@ a:visited {
   /* mouse over link */
 a:hover {
     color: #ffffff;
+}
+
+.spacer {
+  margin: 25px 25px 25px 25px
 }
 
 
