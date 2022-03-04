@@ -406,7 +406,7 @@ function render(canvas, grid , xOffset, yOffset , bgRed, bgGreen, bgBlue, blend,
                 b = clip1d(b * (1 + 0.75 * blur   * grid[y][xPrime] * grid[y][xPrime]));
 
                 var hex = rgbToHex(r, g, b);
-                drawDiagCross(canvas, [c[X] + xOffset, c[Y] + yOffset], Math.min(10, Math.abs(l)), 1, hex, mult, grid[y][xPrime] * 12.5);
+                drawDiagCross(canvas, [c[X] + xOffset, c[Y] + yOffset], Math.min(10, Math.abs(l)), 1, hex, mult, grid[y][xPrime] * 5);
             //drawCircle(canvas, c, BASE + RAD * grid[y][x]);
             }
         }
