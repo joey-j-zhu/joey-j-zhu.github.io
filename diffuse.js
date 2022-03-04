@@ -326,7 +326,7 @@ function drawDiagCross(canvas, center, length, thickness, color, mult, jump) {
         var newX = (c[X] - G1[X] / 2) * (1 + b * stretch) + G1[X] / 2;
         var newY = c[Y] - a * stretch + d * (c[X] - G1[X] / 2) * (c[X] - G1[X] / 2);
 
-        var mouseForce = 3.5 *  warp / (2.57 + 0.001 * mag2([smoothC[X] - newX, smoothC[Y] - newY]));
+        var mouseForce = 6 *  warp / (0.7 + 0.001 * mag2([smoothC[X] - newX, smoothC[Y] - newY]));
         // newX += (smoothC[X] - newX) * mouseForce;
         newY += (smoothC[Y] - newY) * mouseForce + jump;
         return [newX, newY];
