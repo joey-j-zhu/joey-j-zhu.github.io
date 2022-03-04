@@ -318,7 +318,7 @@ function drawCross(canvas, center, length, thickness, color) {
     drawRect(canvas, [center[X] - length, center[Y] - thickness], [length * 2 - thickness, thickness], color);
 }
 
-function drawDiagCross(canvas, center, length, thickness, color, mult) {
+function drawDiagCross(canvas, center, length, thickness, color, mult, jump) {
     function transform(c) {     
         c[Y] += 4 * Math.sin(0.01 * c[X] + 0.01 * c[Y] - 0.02 * ticks) * (1 - Math.exp(-ticks / 5000));
         c[X] += 6 * Math.cos(0.01 * c[X] - 0.01 * c[Y] - 0.02 * ticks) * (1 - Math.exp(-ticks / 5000));
@@ -326,13 +326,13 @@ function drawDiagCross(canvas, center, length, thickness, color, mult) {
         var newX = (c[X] - G1[X] / 2) * (1 + b * stretch) + G1[X] / 2;
         var newY = c[Y] - a * stretch + d * (c[X] - G1[X] / 2) * (c[X] - G1[X] / 2);
 
-        var mouseForce = 2.5 *  warp / (3 + 0.0007 * mag2([smoothC[X] - newX, smoothC[Y] - newY]));
-        newX += (smoothC[X] - newX) * mouseForce;
-        newY += (smoothC[Y] - newY) * mouseForce;
+        var mouseForce = 3.5 *  warp / (2.57 + 0.001 * mag2([smoothC[X] - newX, smoothC[Y] - newY]));
+        // newX += (smoothC[X] - newX) * mouseForce;
+        newY += (smoothC[Y] - newY) * mouseForce + jump;
         return [newX, newY];
     }
 
-    length = Math.max(0, length - 0.75) * mult;
+    length = Math.max(0, length - 0.45) * mult;
     if (length > 0) {
         var a = 0.0001;
         var b = 0.00001;
@@ -406,7 +406,7 @@ function render(canvas, grid , xOffset, yOffset , bgRed, bgGreen, bgBlue, blend,
                 b = clip1d(b * (1 + 0.75 * blur   * grid[y][xPrime] * grid[y][xPrime]));
 
                 var hex = rgbToHex(r, g, b);
-                drawDiagCross(canvas, [c[X] + xOffset, c[Y] + yOffset], Math.min(10, Math.abs(l)), 1, hex, mult);
+                drawDiagCross(canvas, [c[X] + xOffset, c[Y] + yOffset], Math.min(10, Math.abs(l)), 1, hex, mult, grid[y][xPrime] * 12.5);
             //drawCircle(canvas, c, BASE + RAD * grid[y][x]);
             }
         }
