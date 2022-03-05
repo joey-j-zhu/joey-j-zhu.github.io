@@ -1,46 +1,176 @@
+class Point {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+    add(other) { this.x += other.x; }
+    subtract(other) { this.y += other.y; }
+    createSum(other) { return new Point(this.x + other.x, this.y + other.y); }
+    createDelta(other) { return Point(other.x - this.x, other.y - this.y); }
+    createInterpolation(other, fraction) { return Point(this.x + fraction * (other.x  - this.x), this.y + fraction * (other.y  - this.y)); }
+    normSquared() { return this.x * this.x + this.y * this.y };
+    norm() { return Math.sqrt(this.normSquared()); }
+    distanceSquared(other) { return this.createDelta(other).normSquared(); }
+    distance(other) { return this.createDelta(other).norm(); }
+}
+
+class Grid {
+    constructor(xSize, ySize) {
+        this.array = new Array(ySize);
+        this.xSize = xSize;
+        this.ySize = ySize;
+        for (var y = 0; y < ySize; y++) {
+            this.array[y] = new Array(xSize);
+            for (var x = 0; x < xSize; x++) {
+                this.array[y][x] = 0;
+            }
+        }
+    }
+    getVal(x, y) { return this.array[y][x]; }
+    setVal(x, y, val) { this.array[y][x] = val; }
+
+    // Desctructive addition of new grid
+    add(other) { 
+        for (var y = 0; y < this.ySize; y++) {
+            for (var x = 0; x < this.xSize; x++) {
+                this.array[y][x] += other.array[y][x];
+            }        
+        }
+    }
+
+    // Desctructive subtraction of new grid
+    subtract(other) { 
+        for (var y = 0; y < this.ySize; y++) {
+            for (var x = 0; x < this.xSize; x++) {
+                this.array[y][x] -= other.array[y][x];
+            }        
+        }
+    }
+
+    // Destructive scaling of all grid values
+    scale(factor) {
+        for (var y = 0; y < this.ySize; y++) {
+            for (var x = 0; x < this.xSize; x++) {
+                this.array[y][x] *= factor;
+            }        
+        }
+    }
+
+    // Destructively blend with another grid
+    interpolate(other, fraction) { 
+        for (var y = 0; y < this.ySize; y++) {
+            for (var x = 0; x < this.xSize; x++) {
+                this.array[y][x] = this.array[y][x] + fraction * (other.array[y][x] - this.array[y][x]);
+            }        
+        }
+    }
+
+    // Deepcopy this grid's values to another grid
+    copyTo(other) {
+        for (var y = 0; y < this.ySize; y++) {
+            for (var x = 0; x < this.xSize; x++) {
+                other.setVal(x, y, 
+                    this.getVal(x, y));
+            }        
+        }
+    }
+
+    // Constructive addition of new grid
+    createSum(other) {
+        var newGrid = new Grid(this.xSize, this.ySize);
+        for (var y = 0; y < this.ySize; y++) {
+            for (var x = 0; x < this.xSize; x++) {
+                newGrid.array[y][x] = this.array[y][x] + other.array[y][x];
+            }        
+        }
+        return newGrid;
+    }
+
+    // Constructive subtraction of new grid
+    createDelta(other) { 
+        var newGrid = new Grid(this.xSize, this.ySize);
+        for (var y = 0; y < this.ySize; y++) {
+            for (var x = 0; x < this.xSize; x++) {
+                newGrid.array[y][x] = this.array[y][x] + other.array[y][x];
+            }        
+        }
+        return newGrid;
+    }
+
+    // Destructive scaling of all grid values
+    createScale(factor) {
+        var newGrid = new Grid(this.xSize, this.ySize);
+        for (var y = 0; y < this.ySize; y++) {
+            for (var x = 0; x < this.xSize; x++) {
+                newGrid.array[y][x] = this.array[y][x] * factor;
+            }        
+        }
+        return newGrid;
+    }
+
+    createInterpolation(other, fraction) { 
+        var newGrid = new Grid(this.xSize, this.ySize);
+        for (var y = 0; y < this.ySize; y++) {
+            for (var x = 0; x < this.xSize; x++) {
+                newGrid.array[y][x] = this.array[y][x] + fraction * (other.array[y][x] - this.array[y][x]);
+            }        
+        }
+        return newGrid;
+    }
+}
+
+// import { Point, Grid } from "graphicUtils.js";
+
 var X = 0;
 var Y = 1;
 
-var T = 10;
-var SIZE = [75, 25];
-var MOUSE_RANGE = [10, 10];
-var RAND_RANGE = 1;
-var FEED_RATE = 0.2;
-var FADE_RATE = 0.99;
-var SWAPS = 300; // Number of diffusion swaps per frame
-var MIX_COEF = 0.8; // Amount of mixing per frame
-var MOVE_RATE = 0.2;
-var VFADE_RATE = 1;
-var VWEIGHT = 10;
+var GRID_SIZE = [75, 25];
+
+function emptyGrid() {
+    return new Grid(GRID_SIZE[X], GRID_SIZE[Y]);
+}
+
+var FLUCTUATION_RADIUS = 10;
+var FLUCTUATION_MAGNITUDE = 0.5;
+var DECAY_FACTOR = 0.95;
+
+var MAX_SWAP_RANGE = 3;
+var SWAPS_PER_FRAME = 300; // Number of diffusion swaps per frame
+var SWAP_FRACTION = 0.95; // Amount of mixing per frame
+
 // Global variables for fitting animation to webpage size. I need to change my code
 // so this scales with the webpage size.
 var G0 = [0, 0];
 var G1 = [960, 480];
-var CELL_SIZE = [(G1[X] - G0[X]) / SIZE[X], (G1[Y] - G0[Y]) / SIZE[Y]];
+
+
+
+var T = 10;
+var MOVE_RATE = 0.2;
+var VECOCITY_DECAY_RATE = 1;
+var VWEIGHT = 10;
+
+var CELL_SIZE = [(G1[X] - G0[X]) / GRID_SIZE[X], (G1[Y] - G0[Y]) / GRID_SIZE[Y]];
 
 var RAD = 15;
 var BASE = 0;
 
 // The window size when calculating moving averages for smoothing
 var MOUSE_BUFFER = 32;
-var GRID_BUFFER = 8;
+var MAX_GRID_BUFFER_SIZE = 8;
 
 // I kinda eyeballed most of the colors and color functions
 var BASE_COLOR = "#606060";
 var BG_COLOR = "#101010";
 var SHADOW_OFFSET = 5;
 
-function sigmoid(input) {
-    return 1 / (1 + Math.exp(input * -1))
-}
-
 
 // DIFFUSE GRID
 function grid(c) {
     var a = new Array(c[Y]);
-    for (var y = 0; y < SIZE[Y]; y++) {
+    for (var y = 0; y < GRID_SIZE[Y]; y++) {
         a[y] = new Array(c[X]);
-        for (var x = 0; x < SIZE[X]; x++) {
+        for (var x = 0; x < GRID_SIZE[X]; x++) {
             a[y][x] = 0;
         }
     }
@@ -53,13 +183,13 @@ function randint(a, b) {
 }
 
 // Flip a coin weighted p for True
-function flip(p) {
+function coinFlip(p) {
     return (Math.random() < p);
 }
 
 // Clip the input between 0 and 1
 function clip(c) {
-    return [Math.min(Math.max(0, c[X]), SIZE[X] - 1), Math.min(Math.max(0, c[Y]), SIZE[Y] - 1)];
+    return [Math.min(Math.max(0, c[X]), GRID_SIZE[X] - 1), Math.min(Math.max(0, c[Y]), GRID_SIZE[Y] - 1)];
 }
 
 function clip1d(a) {
@@ -68,7 +198,7 @@ function clip1d(a) {
 
 // Randomly sample from the entire grid
 function gridSample() {
-    return [randint(0, SIZE[X]), randint(0, SIZE[Y])];
+    return [randint(0, GRID_SIZE[X]), randint(0, GRID_SIZE[Y])];
 }
 
 // Sample from the axis-aligned square of length 2d+1 centered on x, y
@@ -81,7 +211,7 @@ function boxSample(c, d) {
 // Chance of stochastically incrementing a number to calculate diffusion
 function stoc(n) {
     var fn = Math.floor(n);
-    var d = flip(n - fn);
+    var d = coinFlip(n - fn);
     if (d == true) {
         return fn + 1;
     } else {
@@ -90,7 +220,7 @@ function stoc(n) {
 }
 
 function neighbor(c, d, v) {  
-    return boxSample(clip([(c[X] + stoc(v[X])) % SIZE[X], c[Y] + stoc(v[Y])]), 0);
+    return boxSample(clip([(c[X] + stoc(v[X])) % GRID_SIZE[X], c[Y] + stoc(v[Y])]), 0);
     //return boxSample(c, d);
 }
 
@@ -101,31 +231,44 @@ function sampleFilter(arr) {
     var finished = false;
     while (!finished) {
         var s = gridSample;
-        finished = flip(arr[y][x]);
+        finished = coinFlip(arr[y][x]);
     }
 }
 
+function interpolate(a, b, fraction) {
+    return a + fraction * (b - a);
+}
+
 // Mix the values at these two points and change their values accordingly
-function transfer(arr, x1, y1, x2, y2, amt1, amt2) {
-    var cell1 = arr[y1][x1];
-    var cell2 = arr[y2][x2];
-    arr[y1][x1] = cell1 + amt1 * (cell2 - cell1);
-    arr[y2][x2] = cell2 + amt2 * (cell1 - cell2);
+function transfer(grid, x1, y1, x2, y2, amt1, amt2) {
+    var cell1 = grid.getVal(x1, y1);
+    var cell2 = grid.getVal(x2, y2);
+
+    grid.setVal(x1, y1, 
+        interpolate(cell1, cell2, 
+            amt1));
+    grid.setVal(x2, y2, 
+        interpolate(cell1, cell2, 
+            amt2));
 }
 
 // A single "step" in the diffusion simulation which mixes values at two points.
 // Each timestep computes many of these at a time, randomly selecting nearby pairs of points.
-function step(arr, d, diffusion, vx, vy) {
-    var nc;
-    var c = gridSample();
-    nc = neighbor(c, d, [vx[c[Y]][c[X]], vy[c[Y]][c[X]]]);
-    if (nc[X] == clip(nc)[X] && nc[Y] == clip(nc)[Y]) {
+function step(mainGrid, maxSwapRange, swapFraction, xVelocityGrid, yVelocityGrid) {
+    var cellA = gridSample();
+    var cellB = neighbor(cellA, maxSwapRange, 
+        [xVelocityGrid.getVal(cellA[X], cellA[Y]), yVelocityGrid.getVal(cellA[X], cellA[Y])]);
+    if (cellB[X] == clip(cellB)[X] && cellB[Y] == clip(cellB)[Y]) {
         // If the neighbor is valid, mix
-        transfer(arr, c[X], c[Y], Math.floor(nc[X]), Math.floor(nc[Y]), diffusion, diffusion);
-        console.log(nc[X] - c[X]);
+        transfer(
+            mainGrid, 
+            cellA[X], cellA[Y], 
+            Math.floor(cellB[X]), Math.floor(cellB[Y]), 
+            swapFraction, swapFraction);
     } else {
         // Else, just drain
-        arr[c[Y]][c[X]] *= (1 - diffusion);
+        mainGrid.setVal(cellA[X], cellA[Y], 
+            mainGrid.getVal(cellA[X], cellA[Y]) * (1 - swapFraction));
     }
 }
 
@@ -137,11 +280,11 @@ var mouse = [0, 0];
 var currentBuffer = 1;
 
 function globalToLocal(c) {
-    return [SIZE[X] * (c[X] - G0[X]) / (G1[X] - G0[X]), SIZE[Y] * (c[Y] - G0[Y]) / (G1[Y] - G0[Y])];
+    return [GRID_SIZE[X] * (c[X] - G0[X]) / (G1[X] - G0[X]), GRID_SIZE[Y] * (c[Y] - G0[Y]) / (G1[Y] - G0[Y])];
 }
 
 function localToGlobal(c) {
-    return [G0[X] + (G1[X] - G0[X]) * c[X] / SIZE[X], G0[Y] + (G1[Y] - G0[Y]) * c[Y] / SIZE[Y]];
+    return [G0[X] + (G1[X] - G0[X]) * c[X] / GRID_SIZE[X], G0[Y] + (G1[Y] - G0[Y]) * c[Y] / GRID_SIZE[Y]];
 }
 
 // Keep track of the cursor's last 10 positions to make a moving average to smooth out
@@ -153,38 +296,24 @@ var totalC = [mouse[X], mouse[Y]];
 var smoothC = [mouse[X], mouse[Y]];
 var prevC = globalToLocal([mouse[X], mouse[Y]]);
 
-// Add heat to the grid in a blurred area around the smoothed cursor.
-function heat(grid, c) {
-    c[X] = Math.floor(c[X]);
-    c[Y] = Math.floor(c[Y]);
-    var ax = Math.max(0, c[X] - MOUSE_RANGE[X]);
-    var bx = Math.min(SIZE[X] - 1, (c[X] + MOUSE_RANGE[X]) + 1);
-    var ay = Math.max(0, c[Y] - MOUSE_RANGE[Y]);
-    var by = Math.min(SIZE[Y] - 1, (c[Y] + MOUSE_RANGE[Y]) + 1);
-    for (var x = ax; x <= bx; x++) {
-        for (var y = ay; y < by; y++) {
-            var dx = x - c[X];
-            var dy = y - c[Y];
-            var r2 = dx * dx + dy * dy;
-            grid[y][x] = grid[y][x] + FEED_RATE * Math.random() / (r2 + 1);
-        }
-    }
-}
-
 // Pull the area of the grid near the cursor towards a target value.
-function pull(grid, c, target) {
-    c[X] = Math.floor(c[X]);
-    c[Y] = Math.floor(c[Y]);
-    var ax = Math.max(0, c[X] - MOUSE_RANGE[X]);
-    var bx = Math.min(SIZE[X] - 1, (c[X] + MOUSE_RANGE[X]) + 1);
-    var ay = Math.max(0, c[Y] - MOUSE_RANGE[Y]);
-    var by = Math.min(SIZE[Y] - 1, (c[Y] + MOUSE_RANGE[Y]) + 1);
+function pull(grid, center, target, range) {
+    center[X] = Math.floor(center[X]);
+    center[Y] = Math.floor(center[Y]);
+    var ax = Math.max(0, center[X] - range);
+    var bx = Math.min(grid.xSize - 1, (center[X] + range) + 1);
+    var ay = Math.max(0, center[Y] - range);
+    var by = Math.min(grid.ySize - 1, (center[Y] + range) + 1);
     for (var x = ax; x <= bx; x++) {
         for (var y = ay; y <= by; y++) {
-            var dx = x - c[X];
-            var dy = y - c[Y];
+            var dx = x - center[X];
+            var dy = y - center[Y];
             var r2 = dx * dx + dy * dy;
-            grid[y][x] += (target - grid[y][x]) * FEED_RATE / (r2 + 1);
+            grid.setVal(x, y, 
+                interpolate(grid.getVal(x, y), target, 
+                    FLUCTUATION_MAGNITUDE / (r2 + 1)
+                )
+            );
         }
     }
 }
@@ -220,51 +349,60 @@ function mouseV() {
 
 // GRID BUFFER
 
-var smoothGrid = grid(SIZE);
-var totalGrid = grid(SIZE);
+var smoothGrid = emptyGrid(); 
+var totalGrid = emptyGrid();
+var gridStream = [emptyGrid()];
 
-var gridStream = [grid(SIZE)];
-
-var currGridBuffer = 1;
+var currGridBufferSize = 1;
 
 
 function addGridFrame(newGrid) {
     // Add to the total grid
-    for (var y = 0; y < SIZE[Y]; y++) {
-        for (var x = 0; x < SIZE[X]; x++) {
+    /* for (var y = 0; y < GRID_SIZE[Y]; y++) {
+        for (var x = 0; x < GRID_SIZE[X]; x++) {
             totalGrid[y][x] += newGrid[y][x];
         }
-    }
+    } */
+    totalGrid.add(newGrid);
     
-    if (currGridBuffer == GRID_BUFFER) {
+    if (currGridBufferSize == MAX_GRID_BUFFER_SIZE) {
         // If buffer is full, take out bottom of stream and set values to incoming grid
         // And recalculate sliding total
         var last = gridStream.shift();
-        for (var y = 0; y < SIZE[Y]; y++) {
-            for (var x = 0; x < SIZE[X]; x++) {
+        /* for (var y = 0; y < GRID_SIZE[Y]; y++) {
+            for (var x = 0; x < GRID_SIZE[X]; x++) {
                 totalGrid[y][x] -= last[y][x];
                 last[y][x] = newGrid[y][x];
             }
-        }
+        } */
+        totalGrid.subtract(last);
+        newGrid.copyTo(last);
+        
         gridStream.push(last);
     } else {
         // If buffer isn't full, add a copy of current and up counter
-        var newArr = grid(SIZE);
-        for (var y = 0; y < SIZE[Y]; y++) {
-            for (var x = 0; x < SIZE[X]; x++) {
+        var newArr = emptyGrid();
+        /* for (var y = 0; y < GRID_SIZE[Y]; y++) {
+            for (var x = 0; x < GRID_SIZE[X]; x++) {
                 newArr[y][x] = newGrid[y][x];
             }
-        }
+        } */
+        newGrid.copyTo(newArr);
         gridStream.push(newArr);
-        currGridBuffer++;
+        currGridBufferSize++;
     }
     
     // Pull smooth grid to buffer average
-    for (var y = 0; y < SIZE[Y]; y++) {
-        for (var x = 0; x < SIZE[X]; x++) {
-            smoothGrid[y][x] += (totalGrid[y][x] / currGridBuffer - smoothGrid[y][x]) * MOVE_RATE;
+    /* 
+    for (var y = 0; y < GRID_SIZE[Y]; y++) {
+        for (var x = 0; x < GRID_SIZE[X]; x++) {
+            smoothGrid[y][x] += (totalGrid[y][x] / currGridBufferSize - smoothGrid[y][x]) * MOVE_RATE;
         }
-    }
+    } */
+    smoothGrid.interpolate(
+        totalGrid.createScale(1 / currGridBufferSize),
+        MOVE_RATE
+    );
 }
 
 
@@ -280,11 +418,10 @@ var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 var ticks = 0;
 
-// Grids: mainGrid concerns the actual display/heat values
 // A vector field is stored in vxGrid and vyGrid
-var mainGrid = grid(SIZE);
-var vxGrid = grid(SIZE);
-var vyGrid = grid(SIZE);
+var mainGrid = emptyGrid();
+var vxGrid = emptyGrid();
+var vyGrid = emptyGrid();
 
 
 // Shapes and colors
@@ -377,17 +514,17 @@ function headline(canvas, message) {
 function render(canvas, grid , xOffset, yOffset , bgRed, bgGreen, bgBlue, blend, glow, xShift, mult) {
     var c;
     var l;
-    for (var y = 0; y < SIZE[Y]; y++) {
-        for (var x = 0; x < SIZE[X]; x++) {
-            var xPrime = (x + xShift) % SIZE[X];
-            l = BASE + RAD * (grid[y][xPrime]) * 2;
+    for (var y = 0; y < GRID_SIZE[Y]; y++) {
+        for (var x = 0; x < GRID_SIZE[X]; x++) {
+            var xPrime = (x + xShift) % GRID_SIZE[X];
+            l = BASE + RAD * (grid.getVal(xPrime, y)) * 2;
             c = localToGlobal([x + 0.5, y + 0.5]);
 
             var r = 0.4 + 0.006 * (x + y) + 0.05 * Math.sin(ticks * 0.24 / T);
             var g = 0.3 + 0.002 * (x - y) + 0.04 * Math.cos(ticks * 0.48 / T );
             var b = 0.45 - 0.006 * (x / 2 + y) - 0.1 * Math.sin(ticks * 0.89 / T);
             
-            if (grid[y][xPrime] < 0) {
+            if (grid.getVal(xPrime, y) < 0) {
                 r = 1 - r;
                 g = 1 - g;
                 b = 1 - b;
@@ -401,12 +538,12 @@ function render(canvas, grid , xOffset, yOffset , bgRed, bgGreen, bgBlue, blend,
                 b += fog * (bgBlue - b);
 
                 var blur = Math.min(1, Math.max(0, glow - (y-25)/5));;
-                r = clip1d(r * (1 + 2 * blur  * grid[y][xPrime] * grid[y][xPrime]));
-                g = clip1d(g * (1 + 1.5 * blur  * grid[y][xPrime] * grid[y][xPrime]));
-                b = clip1d(b * (1 + 0.75 * blur   * grid[y][xPrime] * grid[y][xPrime]));
+                r = clip1d(r * (1 + 2 * blur  * grid.getVal(xPrime, y) * grid.getVal(xPrime, y)));
+                g = clip1d(g * (1 + 1.5 * blur  * grid.getVal(xPrime, y) * grid.getVal(xPrime, y)));
+                b = clip1d(b * (1 + 0.75 * blur   * grid.getVal(xPrime, y) * grid.getVal(xPrime, y)));
 
                 var hex = rgbToHex(r, g, b);
-                drawDiagCross(canvas, [c[X] + xOffset, c[Y] + yOffset], Math.min(10, Math.abs(l)), 1, hex, mult, grid[y][xPrime] * 5);
+                drawDiagCross(canvas, [c[X] + xOffset, c[Y] + yOffset], Math.min(10, Math.abs(l)), 1, hex, mult, grid.getVal(xPrime, y) * 5);
             //drawCircle(canvas, c, BASE + RAD * grid[y][x]);
             }
         }
@@ -425,31 +562,27 @@ function update() {
     addGridFrame(mainGrid);
 
     // Run a number of Stochastic diffusion/flow iterations
-    for (var i = 0; i < SWAPS; i++) {
-        step(mainGrid, RAND_RANGE, MIX_COEF, vxGrid, vyGrid);
+    for (var i = 0; i < SWAPS_PER_FRAME; i++) {
+        step(mainGrid, MAX_SWAP_RANGE, SWAP_FRACTION, vxGrid, vyGrid);
     }
 
     // Update 
-    //pull(mainGrid, globalToLocal([smoothC[X], smoothC[Y]]), 0.5);
     var vel = globalToLocal(mouseV());
 
-    // Make functions
-    if (mag2(vel) > 0) {
-        pull(vxGrid, globalToLocal(smoothC), VWEIGHT * vel[X]);
-        pull(vyGrid, globalToLocal(smoothC), VWEIGHT * vel[Y]);
-    }
-
-    for (var y = 0; y < SIZE[Y]; y++) {
-        for (var x = 0; x < SIZE[X]; x++) {
-            mainGrid[y][x] = mainGrid[y][x] * FADE_RATE;
-            vxGrid[y][x] = vxGrid[y][x] * VFADE_RATE;
-            vyGrid[y][x] = vyGrid[y][x] * VFADE_RATE;
+    /* for (var y = 0; y < GRID_SIZE[Y]; y++) {
+        for (var x = 0; x < GRID_SIZE[X]; x++) {
+            mainGrid[y][x] = mainGrid[y][x] * DECAY_FACTOR;
+            vxGrid[y][x] = vxGrid[y][x] * VECOCITY_DECAY_RATE;
+            vyGrid[y][x] = vyGrid[y][x] * VECOCITY_DECAY_RATE;
         }
-    }
+    } */
+    mainGrid.scale(DECAY_FACTOR);
+    vxGrid.scale(VECOCITY_DECAY_RATE);
+    vyGrid.scale(VECOCITY_DECAY_RATE);
 
     if (ticks % 4 == 0) {
-        var fx = randint(0, SIZE[X] - 1);
-        var fy = randint(0, SIZE[Y] - 1);
+        var fx = randint(0, GRID_SIZE[X] - 1);
+        var fy = randint(0, GRID_SIZE[Y] - 1);
 
         var vx = (Math.random() - 0.5) * 5;
         var vy = (Math.random() - 0.5) * 5;
@@ -459,9 +592,9 @@ function update() {
         var dy = (Math.random() - 0.5) * 5;
 
         //mainGrid[fy][fx] += 0.5 * Math.random();
-        pull(mainGrid, [fx, fy], size);
-        pull(vxGrid, [fx, fy], -vx * VWEIGHT);
-        pull(vyGrid, [fx, fy], -vy * VWEIGHT);
+        pull(mainGrid, [fx, fy], size, FLUCTUATION_RADIUS);
+        pull(vxGrid, [fx, fy], -vx * VWEIGHT, FLUCTUATION_RADIUS);
+        pull(vyGrid, [fx, fy], -vy * VWEIGHT, FLUCTUATION_RADIUS);
         
         fx += dx * 2;
         fy += dy * 2;
@@ -470,9 +603,9 @@ function update() {
         fy = f[Y];
 
         //mainGrid[fy][fx] += 0.5 * Math.random();
-        pull(mainGrid, [fx, fy], -size);
-        pull(vxGrid, [fx, fy], vx * VWEIGHT);
-        pull(vyGrid, [fx, fy], vy * VWEIGHT);
+        pull(mainGrid, [fx, fy], -size, FLUCTUATION_RADIUS);
+        pull(vxGrid, [fx, fy], vx * VWEIGHT, FLUCTUATION_RADIUS);
+        pull(vyGrid, [fx, fy], vy * VWEIGHT, FLUCTUATION_RADIUS);
     }
 
     ticks++;
@@ -496,7 +629,7 @@ function mainloop() {
 
     render(ctx, smoothGrid, -(ticks / speed) % (CELL_SIZE[X] * 2), 0,
             bg, bg, bg, -0.5,
-            4, 2 * Math.trunc((ticks / speed) / (CELL_SIZE[X] * 2)), 1.3);
+            8, 2 * Math.trunc((ticks / speed) / (CELL_SIZE[X] * 2)), 1.3);
     update();
 }
 

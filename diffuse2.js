@@ -18,7 +18,7 @@ var MIX_COEF = 0.75; // Amount of mixing per frame
 
 var MOVE_RATE = 0.2;
 
-var VFADE_RATE = 1;
+var VECOCITY_DECAY_RATE = 1;
 var VWEIGHT = 100000000;
 
 var G0 = [0, 0];
@@ -30,7 +30,7 @@ var BASE = 1;
 
 // The window size when calculating moving averages for smoothing
 var MOUSE_BUFFER = 10;
-var GRID_BUFFER = 15;
+var MAX_GRID_BUFFER_SIZE = 15;
 
 var BASE_COLOR = "#606060";
 var BG_COLOR = "404040";
@@ -221,7 +221,7 @@ var totalGrid = grid(SIZE);
 
 var gridStream = [grid(SIZE)];
 
-var currGridBuffer = 1;
+var currGridBufferSize = 1;
 
 
 function addGridFrame(newGrid) {
@@ -232,7 +232,7 @@ function addGridFrame(newGrid) {
         }
     }
     
-    if (currGridBuffer == GRID_BUFFER) {
+    if (currGridBufferSize == MAX_GRID_BUFFER_SIZE) {
         // If buffer is full, take out bottom of stream and set values to incoming grid
         // And recalculate sliding total
         var last = gridStream.shift();
@@ -252,13 +252,13 @@ function addGridFrame(newGrid) {
             }
         }
         gridStream.push(newArr);
-        currGridBuffer++;
+        currGridBufferSize++;
     }
     
     // Pull smooth grid to buffer average
     for (var y = 0; y < SIZE[Y]; y++) {
         for (var x = 0; x < SIZE[X]; x++) {
-            smoothGrid[y][x] += (totalGrid[y][x] / currGridBuffer - smoothGrid[y][x]) * MOVE_RATE;
+            smoothGrid[y][x] += (totalGrid[y][x] / currGridBufferSize - smoothGrid[y][x]) * MOVE_RATE;
         }
     }
 }
@@ -344,8 +344,8 @@ function update() {
     for (var y = 0; y < SIZE[Y]; y++) {
         for (var x = 0; x < SIZE[X]; x++) {
             mainGrid[y][x] = mainGrid[y][x] * FADE_RATE;
-            vxGrid[y][x] = vxGrid[y][x] * VFADE_RATE;
-            vyGrid[y][x] = vyGrid[y][x] * VFADE_RATE;
+            vxGrid[y][x] = vxGrid[y][x] * VECOCITY_DECAY_RATE;
+            vyGrid[y][x] = vyGrid[y][x] * VECOCITY_DECAY_RATE;
         }
     }
     ticks++;
