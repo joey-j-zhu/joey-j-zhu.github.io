@@ -501,7 +501,7 @@ function nrgbToHex(r, g, b) {
 }
 
 function headline(canvas, message) {
-    canvas.font = "96px Raleway";
+    canvas.font = "48px Raleway";
     canvas.textAlign = "center";
     canvas.fillStyle = "#080808";
     canvas.fillText(message, (G1[X] - G0[X]) / 2, (G1[Y] - G0[Y]) * 9 / 10 + SHADOW_OFFSET + 24);
