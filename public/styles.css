@@ -1,0 +1,125 @@
+body {
+  --page-width: 1200px;
+  --cover-height: 500px;
+
+  max-width: 1350px;
+  margin: 0 auto;
+}
+
+.menu {
+  width: var(--page-width);
+
+  margin: 20px;
+  border: 1px solid green;
+  padding: 50px;
+}
+
+.center-options {
+  display: flex;
+  width: 150px;
+  /* Center horizontally*/
+  margin: 0 auto;
+}
+
+
+
+
+.fold {
+  width: var(--page-width);
+  height: var(--cover-height);
+
+  margin: 20px;
+  border: 1px solid green;
+  padding: 50px;
+}
+
+.title {
+  border: 1px solid green;
+  padding-left: 50px;
+  padding-top: 200px;
+}
+
+.about-me {
+  width: var(--page-width); 
+
+  margin: 20px;
+  border: 1px solid green;
+  padding: 50px;
+}
+
+
+
+
+.work-experience {
+  width: var(--page-width); 
+  height: 1000px;
+
+  margin: 20px;
+  border: 1px solid green;
+  padding: 50px;
+}
+
+.statement-box {
+  width: 400px; 
+  
+  margin: 20px;
+  border: 1px solid green;
+  padding: 50px;
+}
+
+.experience-list {
+  width: 400px; 
+  height: 800px;
+
+  margin: 20px;
+  border: 1px solid green;
+  padding: 50px;
+}
+
+.experience-box {
+  width: 300px; 
+
+  margin: 20px;
+  border: 1px solid green;
+  padding: 50px;
+}
+
+.experience-box:hover .experience-box {
+  display: block;
+}
+
+.skill-box {
+  width: 400px; 
+  height: 600px;
+  margin: 20px;
+  border: 1px solid green;
+  padding: 50px;
+
+}
+
+
+
+.hobbies-menu {
+  width: var(--page-width); 
+  margin: 20px;
+  border: 1px solid green;
+  padding: 50px;
+}
+
+.hobbies {
+  width: var(--page-width); 
+  height: 1000px;
+  margin: 20px;
+  border: 1px solid green;
+  padding: 50px;
+}
+
+
+
+.contacts {
+  width: var(--page-width); 
+
+  margin: 20px;
+  border: 1px solid green;
+  padding: 50px;
+}
