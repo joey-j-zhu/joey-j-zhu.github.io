@@ -98,10 +98,6 @@ body {
   padding: 50px;
 }
 
-.experience-box:hover .experience-box {
-  display: block;
-}
-
 .skill-box {
   width: 400px; 
   height: 600px;
@@ -128,7 +124,14 @@ body {
   padding: 50px;
 }
 
+.hobby-slideshow {
+  width: 400px; 
+  height: 800px;
 
+  margin: 20px;
+  border: 1px solid green;
+  padding: 50px;
+}
 
 .contacts {
   width: var(--page-width); 

@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import '../index.css';
 
-const hobbySlideshow = ReactDOM.createRoot(document.getElementById('hobbySlideshow'));
-hobbySlideshow.render(
+const hobbyButton = ReactDOM.createRoot(document.getElementById('hobbyButton'));
+hobbyButton.render(
   <React.StrictMode>
-    <div class="hobby-slideshow">
+    <div class="experience-box">
         testing
     </div>
   </React.StrictMode>
