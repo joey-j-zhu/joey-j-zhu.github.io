@@ -14,6 +14,7 @@ export class ExperienceEntry {
         this.parentList = null;
         this.index = -1;
         this.t = 0;
+        this.selected = false;
     }
 
     idle() {
@@ -33,10 +34,18 @@ export class ExperienceEntry {
     select() {
         if (this.parentList != null) {
             this.parentList.selectIndex(this.index);
+            this.selected = (this.parentList.getSelected() == this.index) ? true : false;
+            if (this.selected) {
+                document.documentElement.style.setProperty('--border-color', "red")
+            } else {
+                document.documentElement.style.setProperty('--border-color', "green")
+            }
         } else {
             console.log("Experience entry has no parent list")
         }
         console.log(this.company + " selected, index = " + this.parentList.getSelected());
+        console.log(this.selected);
+
     }
 
     setParentList(parent) {

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { useEffect } from "react"
 import '../index.css';
 import '../App.css';
 
@@ -49,6 +50,9 @@ const experienceList = new ExperienceList([
 
 
 function Experience() {
+  const color = getComputedStyle(document.documentElement).getPropertyValue('--logo-color');
+  console.log(color);
+
   return (
     <div className="Experience">
       <div className="experience-box" onClick={experienceEntryBerkeley.select.bind(experienceEntryBerkeley)}>

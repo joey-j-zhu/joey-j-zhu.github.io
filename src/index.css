@@ -63,22 +63,25 @@ body {
 
 
 
+:experience{
+  --border-color: red;
+}
 
 .work-experience {
   width: var(--page-width); 
   height: 1000px;
 
   margin: 20px;
-  border: 1px solid green;
   padding: 50px;
 }
 
 .statement-box {
   width: 400px; 
-  
+
   margin: 20px;
-  border: 1px solid green;
   padding: 50px;
+
+  border: 1px solid green;
 }
 
 .experience-list {
@@ -86,7 +89,16 @@ body {
   height: 800px;
 
   margin: 20px;
+  padding: 50px;
+
   border: 1px solid green;
+
+}
+
+.experience-box {
+  width: 300px; 
+
+  margin: 20px;
   padding: 50px;
 }
 
@@ -94,7 +106,7 @@ body {
   width: 300px; 
 
   margin: 20px;
-  border: 1px solid green;
+  border: 1px solid red;
   padding: 50px;
 }
 

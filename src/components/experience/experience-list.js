@@ -12,7 +12,12 @@ export class ExperienceList {
     }
 
     idle() {
-        this.transitionTimer -= this.transitionInc;
+        if (this.transitionTimer > 0) {
+            this.transitionTimer -= this.transitionInc;
+            console.log(this.transitionTimer);
+        } else {
+            this.transitionTimer = 0;
+        }
     }
 
     getSelected() {
