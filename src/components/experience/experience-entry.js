@@ -1,4 +1,6 @@
-export class ExperienceEntry {
+import React from "react";
+
+export default class ExperienceEntry extends React.Component {
     constructor(
         location,
         date,
@@ -6,6 +8,7 @@ export class ExperienceEntry {
         title,
         description,
     ) {
+        super();
         this.location = location;
         this.date = date;
         this.company = company;
@@ -15,6 +18,22 @@ export class ExperienceEntry {
         this.index = -1;
         this.t = 0;
         this.selected = false;
+    }
+
+    render() {
+        return (
+            <div className="experience-box" onClick={this.select.bind(this)}>
+                Berkeley
+            </div>
+        )
+    }
+
+    setParentList(parent) {
+        this.parentList = parent;
+    }
+
+    setIndex(i) {
+        this.index = i;
     }
 
     idle() {
@@ -47,13 +66,5 @@ export class ExperienceEntry {
         console.log(this.selected);
 
     }
-
-    setParentList(parent) {
-        this.parentList = parent;
-        console.log("parent list set for " + this.company)
-    }
-
-    setIndex(i) {
-        this.index = i;
-    }
 }
+

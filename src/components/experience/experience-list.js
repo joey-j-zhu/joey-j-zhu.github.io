@@ -1,5 +1,9 @@
-export class ExperienceList {
+import React from "react";
+import { default as ExperienceEntry } from "./experience-entry";
+
+export default class ExperienceList extends React.Component {
     constructor(entries) {
+        super();
         this.entries = entries;
         for (var i = 0; i < entries.length; i++) {
             entries[i].setParentList(this);
@@ -9,6 +13,26 @@ export class ExperienceList {
         this.prevSelected = -1;
         this.transitionTimer = 0.0;
         this.transitionInc = 0.1;
+    }
+
+    render() {
+        console.log("entries")
+        const elements = (this.entries).map((entry) =>
+            <li>
+                {entry}
+            </li>
+        );
+        return (
+            // <ul>
+            //     {elements}
+            // </ul>
+            <div className="experience-list">
+                <ExperienceEntry />
+                <ExperienceEntry />
+                <ExperienceEntry />
+                <ExperienceEntry />
+            </div>
+        );
     }
 
     idle() {
