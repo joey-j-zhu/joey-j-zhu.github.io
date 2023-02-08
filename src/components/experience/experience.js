@@ -43,7 +43,7 @@ const experienceList = new ExperienceList([
   ),
 ]);
 
-function Experience() {
+function Experience({ entryList }) {
   return (
       <ExperienceList />
   );

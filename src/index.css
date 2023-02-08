@@ -98,17 +98,36 @@ body {
 .experience-box {
   width: 300px; 
 
-  margin: 20px;
-  padding: 50px;
+  margin-top: 20px;
+  margin-bottom: 0px;
+  margin-left: 20px;
+  margin-right: 20px;
+
+  padding-top: 20px;
+  padding-bottom: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  border: 1px solid red;
 }
 
-.experience-box {
+.experience-description-box {
   width: 300px; 
 
-  margin: 20px;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+
+  padding-top: 20px;
+  padding-bottom: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  
   border: 1px solid red;
-  padding: 50px;
+  
 }
+
 
 .skill-box {
   width: 400px; 

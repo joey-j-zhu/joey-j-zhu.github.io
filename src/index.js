@@ -49,8 +49,9 @@ const experienceList = new ExperienceList([
   ),
 ]);
 
+
 registerComponent("experience", Experience);
-registerComponent("experience-list", ExperienceList);
+//registerComponent("experience-list", ExperienceList);
 
 
 const roots = document.querySelectorAll('[data-react-component]');
@@ -75,29 +76,17 @@ roots.forEach(root => {
       <Component />
     </React.StrictMode>
   );
-
 })
 
 
-// const root = ReactDOM.createRoot(document.getElementById('root'));
+function tick() {
 
-// root.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>
-// );
-
-// root.render(
-//   <React.StrictMode>
-//       <ExperienceList />
-//   </React.StrictMode>
-// );
+  
+}
 
 
-// function tick() {
-// }
 
-// setInterval(tick, 30);
+setInterval(tick, 30);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
