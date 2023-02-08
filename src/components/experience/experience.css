@@ -49,6 +49,9 @@
   border-width: 2px;
   border-radius: 10px;
   border-style: solid;
+
+  background-image: linear-gradient(#505050, #404040);
+  filter: drop-shadow(10px 10px 10px #101010);
 }
 
 .experience-entry-description {
@@ -68,6 +71,8 @@
   border-radius: 10px;
   border-style: solid;
   border-color: #505050;
+
+  filter: drop-shadow(10px 10px 10px #202020);
 
   color: #a0a0a0;
 }

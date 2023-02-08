@@ -57,9 +57,7 @@ function Experience({ entryList }) {
         </div>
         
         <div className="skill-box" style={{float:"left"}}>
-          <ExperienceDisplay 
-            parentList={<ExperienceList />}
-          />   
+          a 
         </div>
     </div>
        
