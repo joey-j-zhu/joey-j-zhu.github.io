@@ -1,4 +1,6 @@
 import React from "react";
+import { interpolateTrig } from "../../utils/functions";
+import { Color, interpolateColor, } from "../../utils/colors";
 
 export default class ExperienceEntry extends React.Component {
     constructor({
@@ -27,36 +29,63 @@ export default class ExperienceEntry extends React.Component {
         }
     }
 
-    interpolate(a, b, t) {
-        let tsin = 1 - Math.cos(Math.PI * t / 2.0);
-        return a + tsin * (b - a);
-    }
-
+    
     render() {
-        var heightNum = this.interpolate(0, 100, this.state.t);
+        var heightNum = interpolateTrig(0, 100, this.state.t);
         var heightStr = heightNum.toString() + "px";
+
+        var idleColor = new Color({red: 100, green: 100, blue: 100});
+        var activeColor = new Color({red: 0, green: 255, blue: 200});
+        var color = interpolateColor(idleColor, activeColor, this.state.t, interpolateTrig);
 
         return (
             <div>
-                <div className="experience-box" onClick={this.select.bind(this)} style={{
+                <div className="experience-entry" onClick={this.select.bind(this)} style={{
                     height: "100px",
+                    borderColor: color.getHex(),
                 }}>
                     <div>
-                        {this.location}
+                        <div style={{
+                            fontSize: "12px",
+                            float: "left",
+                        }}>
+                            {this.location}
+                        </div>
+
+                        <div style={{
+                            fontSize: "12px",
+                            float: "right",
+                        }}>
+                            {this.date}
+                        </div>
                     </div>
-                    <div>
-                        {this.date}
+
+                    <div style={{
+                        clear: "left",
+                    }}>
+                        <div style={{
+                            fontSize: "24px",
+                            marginTop: "10px",
+                            marginBottom: "10px",
+                            float: "left",
+                        }}>
+                            {this.company}
+                        </div>
                     </div>
-                    <div>
-                        {this.company}
-                    </div>
-                    <div>
-                        {this.title}
+                    
+                    <div style={{
+                        clear: "left",
+                    }}>
+                        <div style={{
+                            float: "left",
+                        }}>
+                            {this.title}
+                        </div>
                     </div>
                 </div>
                 {this.state.t != 0 && 
-                    <div className="experience-description-box" style={{
-                        height: heightStr
+                    <div className="experience-entry-description" style={{
+                        height: heightStr,
                     }}>
                         {this.description}
                     </div>

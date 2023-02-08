@@ -9,7 +9,7 @@ export default class ExperienceList extends React.Component {
             entries[i].setParentList(this);
             entries[i].setIndex(i);
         }
-        this.transitionIncrement = 0.05;
+        this.transitionIncrement = 0.02;
         this.state = {
             selected: -1,
             prevSelected: -1,
@@ -50,7 +50,7 @@ export default class ExperienceList extends React.Component {
                 <ExperienceEntry 
                     location={"Berkeley, CA"}
                     date={"AUG 2022 - NOV 2022"}
-                    company={"Lawrence Berkeley National Laboratory"}
+                    company={"Lawrence Berkeley Ntl. Laboratory"}
                     title={"Software Engineer Intern"}
                     description={"description here"}
                     index={3}

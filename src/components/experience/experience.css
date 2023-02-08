@@ -1,0 +1,83 @@
+:experience{
+  --border-color: red;
+}
+
+.experience-section {
+  width: var(--page-width); 
+  height: 1000px;
+  margin: 20px;
+  padding: 50px;
+
+  color: white;
+  background-color: #404040;
+}
+
+
+.statement-box {
+  width: 400px; 
+
+  margin: 20px;
+  padding: 50px;
+
+  border: 1px solid green;
+}
+
+.experience-list {
+  width: 500px; 
+  height: 800px;
+
+  margin: 20px;
+  padding: 40px;
+
+  border: 1px solid green;
+
+}
+
+.experience-entry {
+  width: 400px; 
+
+  margin-top: 20px;
+  margin-bottom: 0px;
+  margin-left: 20px;
+  margin-right: 20px;
+
+  padding-top: 20px;
+  padding-bottom: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  border-width: 2px;
+  border-radius: 10px;
+  border-style: solid;
+}
+
+.experience-entry-description {
+  width: 400px; 
+
+  margin-top: 0px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+
+  padding-top: 20px;
+  padding-bottom: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  border-width: 2px;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #505050;
+
+  color: #a0a0a0;
+}
+
+
+.skill-box {
+  width: 400px; 
+  height: 600px;
+  margin: 20px;
+  border: 1px solid green;
+  padding: 50px;
+
+}
