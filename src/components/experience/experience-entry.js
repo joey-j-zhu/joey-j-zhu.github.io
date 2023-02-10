@@ -25,7 +25,6 @@ const ExperienceEntry = ({
         setIsSelected(thisIndex == selectedIndex);
     }, [selectedIndex]);
 
-
     const select = () => {
         selectIndex(thisIndex == selectedIndex ? -1 : thisIndex);
     };

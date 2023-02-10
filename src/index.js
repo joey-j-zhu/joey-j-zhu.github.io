@@ -2,17 +2,19 @@ import React from 'react';
 import ReactDOM, { createRoot } from 'react-dom/client';
 
 import './index.css';
+import './components/about/about.css';
 import './components/experience/experience.css';
 
 import './mapping';
 
-
+import { default as About } from './components/about/about';
 import { default as Experience } from './components/experience/experience';
 
 
 import reportWebVitals from './reportWebVitals';
 import { parseJsonProps, getComponentById, registerComponent } from './mapping';
 
+registerComponent("about", About);
 registerComponent("experience", Experience);
 
 

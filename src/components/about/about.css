@@ -1,0 +1,12 @@
+:about{
+    --border-color: red;
+  }
+
+.about-section {
+    width: var(--page-width); 
+    margin: 20px;
+    padding: 50px;
+  
+    color: white;
+    background-color: #404040;
+  }

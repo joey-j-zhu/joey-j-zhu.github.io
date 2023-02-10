@@ -1,16 +1,9 @@
-import React, { useState } from 'react';
-import ReactDOM from 'react-dom/client';
-import { useEffect } from "react"
+import React, { useEffect, useState } from 'react';
 import '../../index.css';
-import '../../App.css';
-import logo from '../../logo.svg';
 
-
-import {default as ExperienceEntry} from './experience-entry';
-import ExperienceList from './experience-list';
+import { default as ExperienceEntry } from './experience-entry';
 import StatementDisplay from './statement-display';
 import ExperienceDisplay from './experience-display';
-import ExperienceSection from './experience-section';
 
 
 function Experience() {
@@ -24,10 +17,10 @@ function Experience() {
 
   // Rendering
   return (
-    <div>
+    <div className="experience-section">
       <div style={{float:"left"}}>
         <StatementDisplay props = {{
-          statement: "I love learning processes and experiences where innovative ideas give rise to impactful products that truly benefit users.",
+          statement: "lorem ipsum",
         }}/>
       </div>
       
@@ -78,8 +71,10 @@ function Experience() {
         }}/>
       </div>
 
-      {/* <div style={{float:"left"}}>
-        <ExperienceDisplay props={{
+      <div style={{float:"left"}}>
+        <ExperienceDisplay 
+        selectedIndex = {index}
+        contents={{
           skills: [
             {
               "Python": [0, 3],
@@ -91,7 +86,7 @@ function Experience() {
             }
           ]
         }}/>
-      </div> */}
+      </div>
     </div>
   );
 }
