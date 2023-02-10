@@ -1,0 +1,28 @@
+:fold{
+    --border-color: red;
+  }
+
+.fold-section {
+    width: var(--page-width); 
+    height: 600px;
+    margin: 20px;
+    padding: 50px;
+  
+    color: white;
+    background-color: #404040;
+  }
+
+.fold {
+  width: var(--page-width);
+  height: var(--cover-height);
+
+  margin: 20px;
+  border: 1px solid green;
+  padding: 50px;
+}
+
+.fold-title {
+  border: 1px solid green;
+  padding-left: 50px;
+  padding-top: 200px;
+}

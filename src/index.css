@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  background-color: #303030;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -18,80 +19,4 @@ body {
 
   max-width: 1350px;
   margin: 0 auto;
-}
-
-.menu {
-  width: var(--page-width);
-
-  margin: 20px;
-  border: 1px solid green;
-  padding: 50px;
-}
-
-.center-options {
-  display: flex;
-  width: 150px;
-  /* Center horizontally*/
-  margin: 0 auto;
-}
-
-
-
-
-.fold {
-  width: var(--page-width);
-  height: var(--cover-height);
-
-  margin: 20px;
-  border: 1px solid green;
-  padding: 50px;
-}
-
-.title {
-  border: 1px solid green;
-  padding-left: 50px;
-  padding-top: 200px;
-}
-
-.about-me {
-  width: var(--page-width); 
-
-  margin: 20px;
-  border: 1px solid green;
-  padding: 50px;
-}
-
-
-
-
-.hobbies-menu {
-  width: var(--page-width); 
-  margin: 20px;
-  border: 1px solid green;
-  padding: 50px;
-}
-
-.hobbies {
-  width: var(--page-width); 
-  height: 1000px;
-  margin: 20px;
-  border: 1px solid green;
-  padding: 50px;
-}
-
-.hobby-slideshow {
-  width: 400px; 
-  height: 800px;
-
-  margin: 20px;
-  border: 1px solid green;
-  padding: 50px;
-}
-
-.contacts {
-  width: var(--page-width); 
-
-  margin: 20px;
-  border: 1px solid green;
-  padding: 50px;
 }

@@ -10,3 +10,12 @@
     color: white;
     background-color: #404040;
   }
+
+  .about-me {
+    width: var(--page-width); 
+  
+    margin: 20px;
+    border: 1px solid green;
+    padding: 50px;
+  }
+  

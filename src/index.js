@@ -3,19 +3,33 @@ import ReactDOM, { createRoot } from 'react-dom/client';
 
 import './index.css';
 import './components/about/about.css';
+import './components/contacts/contacts.css';
 import './components/experience/experience.css';
+import './components/fold/fold.css';
+import './components/hobbies/hobbies.css';
+import './components/menu/menu.css';
+import './components/services/services.css';
 
-import './mapping';
 
 import { default as About } from './components/about/about';
+import { default as Contacts } from './components/contacts/contacts';
 import { default as Experience } from './components/experience/experience';
+import { default as Fold } from './components/fold/fold';
+import { default as Hobbies } from './components/hobbies/hobbies';
+import { default as Menu } from './components/menu/menu';
+import { default as Services } from './components/services/services';
 
+import './utils/mapping';
+import reportWebVitals from './utils/reportWebVitals';
+import { parseJsonProps, getComponentById, registerComponent } from './utils/mapping';
 
-import reportWebVitals from './reportWebVitals';
-import { parseJsonProps, getComponentById, registerComponent } from './mapping';
-
+registerComponent("menu", Menu);
 registerComponent("about", About);
+registerComponent("fold", Fold);
 registerComponent("experience", Experience);
+registerComponent("hobbies", Hobbies);
+registerComponent("services", Services);
+registerComponent("contacts", Contacts);
 
 
 const roots = document.querySelectorAll('[data-react-component]');
