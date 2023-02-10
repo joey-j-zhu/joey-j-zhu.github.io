@@ -31,8 +31,8 @@ const ExperienceEntry = ({
     };
 
     // Rendering
-    var heightNum = interpolateTrig(0, 100, transient);
-    var heightStr = heightNum.toString() + "px";
+    var windowHeight = interpolateTrig(0, 100, transient).toString() + "px";
+    var verticalPadding = interpolateTrig(0, 20, transient).toString() + "px";
 
     var idleColor = new Color({red: 100, green: 100, blue: 100});
     var activeColor = new Color({red: 0, green: 255, blue: 200});
@@ -43,6 +43,8 @@ const ExperienceEntry = ({
             <div className="experience-entry"style={{
                 height: "100px",
                 borderColor: color.getHex(),
+                borderBottomLeftRadius: transient > 0 ? "0px" : "10px",
+                borderBottomRightRadius: transient > 0 ? "0px" : "10px",
             }}>
                 <div>
                     <div style={{
@@ -85,7 +87,9 @@ const ExperienceEntry = ({
             </div>
             {transient > 0 && 
                 <div className="experience-entry-description" style={{
-                    height: heightStr,
+                    height: windowHeight,
+                    paddingTop: verticalPadding,
+                    paddingBottom: verticalPadding,
                 }}>
                     {contents.description}
                 </div>
