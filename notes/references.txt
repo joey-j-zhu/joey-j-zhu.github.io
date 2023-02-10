@@ -12,6 +12,31 @@ Component Structure:
 - 
 
 
+Passing props from parent to children:
+1. Nested parent-child instantiation: Parent is instantiated, and nested children are wired to props.children
+<Parent>
+    <Child />
+    <Child />
+</Parent>
+
+2. Parent.render(): <>{props.children}</>
+
+3. Child props breakdown:
+- The props we instantiated it with
+- Child props are automatically unioned with all the props in their lineage
+- 
+
+4. Pass a parent state into child props:
+<Parent>
+    <Child props={
+        parentState: 
+    }/>
+</Parent>
+
+
+
+
+
 
 1. Component Architecture
 
