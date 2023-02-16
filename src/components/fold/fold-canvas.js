@@ -15,7 +15,6 @@ const FoldCanvas = ({
         const interval = setInterval(() => {
             setSystem(system.update(1));
             setCanvasTimer(canvasTimer + 1)
-            //console.log(system);
         }, 20);
         return () => clearInterval(interval);
       }, [canvasTimer]);

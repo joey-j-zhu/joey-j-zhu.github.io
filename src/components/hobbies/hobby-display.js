@@ -25,7 +25,6 @@ const HobbyDisplay = ({
                     setRenderOffset(1);
                     setScrollMode(1);
                     setRenderIndex(selectedIndex);
-                    console.log("scroll mode changed");
                 } else {
                     setRenderOffset(0);
                 }
@@ -40,7 +39,6 @@ const HobbyDisplay = ({
         setRenderOffset(1);
         setScrollMode(-1);
         setScrollDirection(selectedIndex > renderIndex ? 1 : -1)
-        console.log("index changed");
     }, [selectedIndex]);
     
     var xOffset = 0;
@@ -51,7 +49,6 @@ const HobbyDisplay = ({
     }
 
     if (contents != undefined) {
-        console.log(renderOffset);
         return (
             <div style={{position: "relative", left: xOffset,}}>
                 <HobbyStatement description="bing chilling" />
