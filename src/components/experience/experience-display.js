@@ -6,7 +6,6 @@ const ExperienceDisplay = ({
     selectedIndex,
     contents,
 }) => {
-    console.log(Object.entries(contents.skillSections));
 
     var activeColor = "#ffffff";
     var idleColor = "#909090";

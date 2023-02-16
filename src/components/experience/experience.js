@@ -76,7 +76,7 @@ function Experience() {
         selectedIndex = {index}
         contents={{
           skillSections: {
-            "Frontend": { 
+            "Frontend Languages": { 
               "React.js": [1],
               "Javascript": [0, 1],
               "Typescript": [1],
@@ -84,14 +84,14 @@ function Experience() {
               "CSS": [1],
             },
 
-            "Backend": {
+            "Backend Languages": {
               "AWS DynamoDB": [1],
               "AWS SQS": [1, 2],
               "AWS S3": [1, 2],
               "Spring Boot": [2],
             },
             
-            "Tools": {
+            "Development Tools": {
               "CI/CD Development": [1, 2],
               "Git, Github": [0, 1, 2, 3],
               "AWS Cloudwatch": [1, 2],
@@ -100,7 +100,7 @@ function Experience() {
               "Adobe Illustrator": [1],
             },
 
-            "Software": {
+            "Software Practices": {
               "SDLC": [1, 2, 3],
               "Agile Development": [1],
               "Business Software": [1, 2, 3],
@@ -108,7 +108,7 @@ function Experience() {
               "Physics Simulations": [3],
             },
 
-            "Languages": {
+            "Backend Languages": {
               "Java (8)": [0, 1, 2],
               "Python (3)": [0, 3],
               "C++ (17)": [0, 3],
@@ -117,11 +117,11 @@ function Experience() {
               "ExecutorService": [2],
             },
 
-            "CS Subjects": {
+            "Computer Science Subjects": {
               "Machine Learning": [0],
               "Deep Neural Networks": [0],
               "Cybersecurity": [0],
-              "Algorithms": [0],
+              "Algorithm Theory": [0],
             },
 
             "Physics Subjects": {

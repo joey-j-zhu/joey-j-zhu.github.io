@@ -17,7 +17,7 @@ const ExperienceEntry = ({
         const interval = setInterval(() => {
             setTransient(isSelected ? (transient < 1 ? transient + incrementSize : 1)
                 : (transient > 0 ? transient - incrementSize : 0))
-        }, 30);
+        }, 10);
         return () => clearInterval(interval);
       }, [transient, setTransient, isSelected]);
 
@@ -89,6 +89,7 @@ const ExperienceEntry = ({
                     height: windowHeight,
                     paddingTop: verticalPadding,
                     paddingBottom: verticalPadding,
+                    overflow: "hidden",
                 }}>
                     {contents.description}
                 </div>
