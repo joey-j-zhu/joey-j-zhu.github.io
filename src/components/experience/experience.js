@@ -75,16 +75,62 @@ function Experience() {
         <ExperienceDisplay 
         selectedIndex = {index}
         contents={{
-          skills: [
-            {
-              "Python": [0, 3],
-              "Java": [0, 1, 2],
+          skillSections: {
+            "Frontend": { 
+              "React.js": [1],
+              "Javascript": [0, 1],
+              "Typescript": [1],
+              "HTML": [1],
+              "CSS": [1],
             },
-            {
-              "SDLC": [1],
-              "CI/CD": [1, 2],
-            }
-          ]
+
+            "Backend": {
+              "AWS DynamoDB": [1],
+              "AWS SQS": [1, 2],
+              "AWS S3": [1, 2],
+              "Spring Boot": [2],
+            },
+            
+            "Tools": {
+              "CI/CD Development": [1, 2],
+              "Git, Github": [0, 1, 2, 3],
+              "AWS Cloudwatch": [1, 2],
+              "Jenkins": [2],
+              "Adobe Photoshop": [0],
+              "Adobe Illustrator": [1],
+            },
+
+            "Software": {
+              "SDLC": [1, 2, 3],
+              "Agile Development": [1],
+              "Business Software": [1, 2, 3],
+              "Customer Software": [2, 3],
+              "Physics Simulations": [3],
+            },
+
+            "Languages": {
+              "Java (8)": [0, 1, 2],
+              "Python (3)": [0, 3],
+              "C++ (17)": [0, 3],
+              "Golang": [0],
+              "OpenMP": [0, 3],
+              "ExecutorService": [2],
+            },
+
+            "CS Subjects": {
+              "Machine Learning": [0],
+              "Deep Neural Networks": [0],
+              "Cybersecurity": [0],
+              "Algorithms": [0],
+            },
+
+            "Physics Subjects": {
+              "Probabilistic Modeling": [0],
+              "Statistical Mechanics": [0],
+              "Analytical Mechanics": [0],
+              "Plasma Dynamics": [0, 3],
+            },
+          }
         }}/>
       </div>
     </div>

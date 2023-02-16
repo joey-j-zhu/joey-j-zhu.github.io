@@ -6,11 +6,48 @@ const ExperienceDisplay = ({
     selectedIndex,
     contents,
 }) => {
-    const messages = [0, 1, 2, 3];
-    var message = messages[selectedIndex];
-    return (<div className="skill-box">
-        {message}
-    </div>);
+    console.log(Object.entries(contents.skillSections));
+
+    var activeColor = "#ffffff";
+    var idleColor = "#909090";
+    return (
+        <div style={{
+            maxWidth: "600px",
+        }}>
+            {Object.entries(contents.skillSections).map(
+                ([skillSectionName, skills]) => {
+                    return (
+                        <div style={{
+                            margin: "20px",
+                            float: "left",
+                            
+                        }}>
+                            {Object.entries(skills).map(
+                                ([skillName, experiences]) => {
+
+                                    var selected = false;
+                                    for (var j = 0; j < experiences.length; j++) {
+                                        if (experiences[j] == selectedIndex) {
+                                            selected = true;
+                                        }
+                                    }
+                                    return (
+                                        <div style={{
+                                            color: selected ? "#ffffff" : "#909090"
+                                        }}>
+                                            {skillName}
+                                        </div>
+                                    );
+                                })
+                            }
+                        </div>
+                    )
+                }
+            )
+
+            }
+        </div>
+    );
 }
 
 export default ExperienceDisplay;

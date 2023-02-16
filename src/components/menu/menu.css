@@ -14,19 +14,28 @@
   border: 1px solid green;
 }
 
-  .menu-section {
-    width: var(--page-width); 
-    margin: 20px;
-    padding: 50px;
-  
-    color: white;
-    background-color: #404040;
-  }
-  
-  .center-options {
-    display: flex;
-    width: 150px;
-    /* Center horizontally*/
-    margin: 0 auto;
-  }
+.menu-section {
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+  top: 0;
+  left: 0;
+
+  padding: 50px;
+
+  color: white;
+  background-color: #404040;
+  opacity: 0.9;
+}
+
+.menu-spacer {
+  min-height: 200px;
+}
+
+.center-options {
+  display: flex;
+  width: 150px;
+  /* Center horizontally*/
+  margin: 0 auto;
+}
   
