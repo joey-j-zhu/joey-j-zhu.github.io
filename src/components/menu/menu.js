@@ -1,37 +1,51 @@
 import React, { useEffect, useState } from 'react';
 import '../../index.css';
 
+import { default as CenterButton } from './center-button';
+import { default as SideButton } from './side-button';
+
 function Menu() {
     return (
         <div className="menu-section">
             <div style={{float:"left"}}>
-                <button>
-                    JOEY ZHU
-                </button>
+                <CenterButton //TODO: change to home button
+                    label = "Joey Zhu"
+                    navigation = {0}
+                />
             </div>
             
-            <div style={{float:"right"}}>
-                <button>
-                    Email
-                </button>
-                <button>
-                    LinkedIn
-                </button>
-                <button>
-                    Github
-                </button>
+            <div style={{
+                minWidth:"500px",
+                display: "flex",
+                float:"right",
+                }}>
+                <SideButton
+                    label = "Email"
+                    navigation = "mailto:joey.j.zhu@gmail.com"
+                />
+                <SideButton
+                    label = "Linkedin"
+                    navigation = "https://www.linkedin.com/in/joey-j-zhu"
+                />
+                <SideButton
+                    label = "Github"
+                    navigation = "https://github.com/np-eazy"
+                />
             </div>
 
             <div className="center-options">
-                <button>
-                    About
-                </button>
-                <button>
-                    Skills
-                </button>
-                <button>
-                    Contact
-                </button>
+                <CenterButton
+                    label = "About"
+                    navigation = {900}
+                />
+                <CenterButton
+                    label = "Skills"
+                    navigation = {1350}
+                />
+                <CenterButton
+                    label = "Services"
+                    navigation = {2500}
+                />
             </div>
         </div>
     );

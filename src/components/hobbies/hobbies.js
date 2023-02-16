@@ -1,26 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import '../../index.css';
 
+import {default as HobbyButton} from './hobby-button';
+
 function Hobbies() {
     return (
         <div>
             <div className="hobbies-menu">
-            <div className="center-options">
-                <button>
-                    Graphic Design
-                </button>
-                <button>
-                    Visual Art
-                </button>
-                <button>
-                    Piano Soloist
-                </button>
-                <button>
-                    Ensemble Cellist
-                </button>
+                <HobbyButton label = "GRAPHIC DESIGN" index = {0} />
+                <HobbyButton label = "VISUAL ART" index = {1} />
+                <HobbyButton label = "PIANO SOLOIST" index = {2} />
+                <HobbyButton label = "ENSEMBLE CELLIST" index = {3} />
             </div>
             
-            </div>
             <div className="hobbies">
                 <div className="statement-box" style={{float:"left"}}>
                     <h3>___</h3>

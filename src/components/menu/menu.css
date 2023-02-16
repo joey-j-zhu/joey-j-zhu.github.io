@@ -6,6 +6,14 @@
     padding: 50px;
   }
 
+.menu-button {
+  width: 100px;
+  height: 50px;
+  
+  margin: 20px;
+  border: 1px solid green;
+}
+
   .menu-section {
     width: var(--page-width); 
     margin: 20px;

@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM, { createRoot } from 'react-dom/client';
 
+import reportWebVitals from './utils/reportWebVitals';
+import { parseJsonProps, getComponentById, registerComponent } from './utils/mapping';
+
 import './index.css';
 import './components/about/about.css';
 import './components/contacts/contacts.css';
@@ -19,20 +22,21 @@ import { default as Hobbies } from './components/hobbies/hobbies';
 import { default as Menu } from './components/menu/menu';
 import { default as Services } from './components/services/services';
 
-import './utils/mapping';
-import reportWebVitals from './utils/reportWebVitals';
-import { parseJsonProps, getComponentById, registerComponent } from './utils/mapping';
 
-registerComponent("menu", Menu);
+
 registerComponent("about", About);
 registerComponent("fold", Fold);
 registerComponent("experience", Experience);
 registerComponent("hobbies", Hobbies);
 registerComponent("services", Services);
 registerComponent("contacts", Contacts);
-
+registerComponent("menu", Menu);
 
 const roots = document.querySelectorAll('[data-react-component]');
+
+window.addEventListener("load", (event) => {
+});
+
 
 roots.forEach(root => {
 

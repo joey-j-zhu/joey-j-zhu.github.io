@@ -18,6 +18,14 @@
     color: white;
     background-color: #404040;
   }
+
+.menu-button {
+  width: 100px;
+  height: 50px;
+  
+  margin: 20px;
+  border: 1px solid green;
+}
   
   .hobby-slideshow {
     width: 400px; 
