@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { interpolateTrig } from "../../utils/functions";
-import { Color, interpolateColor, } from "../../utils/colors";
+import { Color, interpolateColor, THEME_GREEN, THEME_GRAY_4B, THEME_GRAY_6B, THEME_GRAY_6H} from "../../utils/colors";
 
 const ExperienceEntry = ({
         selectedIndex, // State
@@ -33,8 +33,8 @@ const ExperienceEntry = ({
     var windowHeight = interpolateTrig(0, 100, transient).toString() + "px";
     var verticalPadding = interpolateTrig(0, 20, transient).toString() + "px";
 
-    var idleColor = new Color({red: 100, green: 100, blue: 100});
-    var activeColor = new Color({red: 0, green: 255, blue: 200});
+    var idleColor = THEME_GRAY_6B;
+    var activeColor = THEME_GREEN;
     var color = interpolateColor(idleColor, activeColor, transient, interpolateTrig);
 
     return (
@@ -48,6 +48,7 @@ const ExperienceEntry = ({
                 <div>
                     <div style={{
                         fontSize: "12px",
+                        color: THEME_GRAY_6H.getHex(),
                         float: "left",
                     }}>
                         {contents.location}
@@ -55,6 +56,7 @@ const ExperienceEntry = ({
 
                     <div style={{
                         fontSize: "12px",
+                        color: THEME_GRAY_6H.getHex(),
                         float: "right",
                     }}>
                         {contents.date}
@@ -79,6 +81,7 @@ const ExperienceEntry = ({
                 }}>
                     <div style={{
                         float: "left",
+                        color: THEME_GREEN.getHex(),
                     }}>
                         {contents.title}
                     </div>

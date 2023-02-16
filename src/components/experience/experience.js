@@ -106,6 +106,7 @@ function Experience() {
               "Business Software": [1, 2, 3],
               "Customer Software": [2, 3],
               "Physics Simulations": [3],
+              "Quantitative Analysis": [0, 3],
             },
 
             "Backend Languages": {

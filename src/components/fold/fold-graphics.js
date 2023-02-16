@@ -84,6 +84,8 @@ function drawDiagCross(canvas, center, length, thickness, color, mult, jump, tim
         var a = 0.0001;
         var b = 0.00001;
         var d = 0.0003;
+        //center[Y] += length * jump * 0.05;
+
         //var warp = Math.sqrt(Math.sqrt(mag2(mouseV())) / 12) / 4;
         var warp = 0;
         drawLine(canvas, 
@@ -146,7 +148,7 @@ const FoldGraphics = ({
     if (ctx != null && system != undefined) {
         ctx.clearRect(G0[X], G0[Y], G1[X], G1[Y]);
         var bg = 0.1;
-        var speed = 1;
+        var speed = 100;
         var yRot =  1;
         var xRot = 0;
         // render(ctx, system.smoothGrid, -(system.timer / speed) % (CELL_SIZE[X] * 2)  - 4 * xRot, -4 * yRot,

@@ -1,6 +1,6 @@
 import React from "react";
 import { interpolateTrig } from "../../utils/functions";
-import { Color, interpolateColor, } from "../../utils/colors";
+import { Color, interpolateColor, THEME_GREEN_HEX, THEME_GRAY_4H_HEX} from "../../utils/colors";
 
 const ExperienceDisplay = ({
     selectedIndex,
@@ -19,7 +19,9 @@ const ExperienceDisplay = ({
                         <div style={{
                             margin: "20px",
                             float: "left",
-                            
+                            minWidth: "250px",
+                            marginLeft: "10px",
+                            minHeight: "150px",
                         }}>
                             {Object.entries(skills).map(
                                 ([skillName, experiences]) => {
@@ -31,10 +33,14 @@ const ExperienceDisplay = ({
                                         }
                                     }
                                     return (
-                                        <div style={{
-                                            color: selected ? "#ffffff" : "#909090"
-                                        }}>
-                                            {skillName}
+                                        <div 
+                                        className="skill">
+                                            <div
+                                            style={{
+                                                color: selected ? THEME_GREEN_HEX : THEME_GRAY_4H_HEX,
+                                            }}>
+                                                {skillName}
+                                            </div>
                                         </div>
                                     );
                                 })

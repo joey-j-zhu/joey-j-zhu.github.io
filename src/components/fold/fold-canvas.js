@@ -20,7 +20,7 @@ const FoldCanvas = ({
       }, [canvasTimer]);
 
     return (
-        <canvas id="fold-graphics" style={{border:"1px solid green", opacity:0.3}} height={height} width={width}>
+        <canvas id="fold-graphics" style={{opacity:0.3}} height={height} width={width}>
             <FoldGraphics system={system} />
         </canvas>
     );

@@ -6,9 +6,23 @@
   left: 0;
 
   color: white;
-  background-color: #404040;
+  overflow: hidden;
+  background-color: var(--theme-gray-6b);
   opacity: 0.9;
 }
+
+
+.menu-overlay {
+  opacity: 0.4;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: auto;
+  mix-blend-mode: multiply;
+  z-index: 200;
+}
+
 
 .menu-button {
   width: 100px;

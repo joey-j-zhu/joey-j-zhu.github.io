@@ -7,6 +7,12 @@ import { default as SideButton } from './side-button';
 function Menu() {
     return (
         <div className="menu-section">
+            <div className="menu-overlay">
+                <img src="assets/about_me/background.jpg" alt="lmao u suck" width="2000px"/>
+            </div>
+            <div className="menu-overlay">
+                <img src="assets/about_me/background.jpg" alt="lmao u suck" width="2000px"/>
+            </div>
             <div style={{float:"left"}}>
                 <CenterButton //TODO: change to home button
                     label = "Joey Zhu"

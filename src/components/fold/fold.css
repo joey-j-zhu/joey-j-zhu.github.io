@@ -5,42 +5,56 @@
 .fold-section {
     width: var(--page-width); 
     height: 600px;
-    margin: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
     padding: 50px;
   
     color: white;
-    background-color: #404040;
+    background-color: var(--theme-gray-6b);
+    overflow: hidden;
   }
 
   .fold-background {
-    width: var(--page-width); 
+    width: 1300px; 
     height: 600px;
-    margin: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 
-  
     color: white;
-    background-color: #404040;
+    background-image: linear-gradient(var(--theme-gray-4b), var(--theme-gray-6b));
+    overflow: hidden;
+
   }
+
+.fold-overlay {
+  opacity: 0.05;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: auto;
+  mix-blend-mode: multiply
+  z-index = 200;
+}
 
 .fold {
   width: var(--page-width);
   height: var(--cover-height);
 
   margin: 20px;
-  border: 1px solid green;
   padding: 50px;
 }
 
 .fold-title {
-  border: 1px solid green;
   padding-left: 50px;
   padding-top: 200px;
 }
 
-
 .container {
-  width: var(--page-width);
-  height: 150px;
   position: relative;
 }
 
