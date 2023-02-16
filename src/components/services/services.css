@@ -1,9 +1,4 @@
-.services-section {
-    width: var(--page-width); 
-    height: 950px;
-    margin: 20px;
-    padding: 50px;
-  
-    color: white;
-    background-color: #404040;
-  }
+services-section {
+  height: 950px;
+  padding: 50px;
+}

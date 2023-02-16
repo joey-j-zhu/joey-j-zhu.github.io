@@ -285,7 +285,7 @@ const System = class {
         this.vxGrid.scale(VECOCITY_DECAY_RATE);
         this.vyGrid.scale(VECOCITY_DECAY_RATE);
 
-        if (this.timer % 4 == 0) {
+        if (this.timer % 2 == 0) {
             var fx = randint(0, GRID_SIZE[X] - 1);
             var fy = randint(0, GRID_SIZE[Y] - 1);
 

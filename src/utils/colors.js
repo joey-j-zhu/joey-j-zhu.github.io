@@ -23,8 +23,6 @@ export class Color {
         this.blue = blue;
     }
 
-
-
     // Descructively interpolate colors to avoid piling up Color instances
     interpolateTo(colorB, t, interpolationFunction) {
         this.red = interpolationFunction(this.red, colorB.red, t);
@@ -36,3 +34,18 @@ export class Color {
         return "#" + componentToHex(this.red) + componentToHex(this.green) + componentToHex(this.blue);
     }
 }
+
+export const THEME_GRAY_6B = new Color({red: 0, green: 0, blue: 0});
+export const THEME_GRAY_4B = new Color({red: 0, green: 0, blue: 0});
+export const THEME_GRAY_2B = new Color({red: 0, green: 0, blue: 0});
+export const THEME_GRAY_2H = new Color({red: 0, green: 0, blue: 0});
+export const THEME_GRAY_4H = new Color({red: 0, green: 0, blue: 0});
+export const THEME_GRAY_6H = new Color({red: 0, green: 0, blue: 0});
+export const THEME_GREEN_DARK = new Color({red: 0, green: 0, blue: 0});
+export const THEME_GREEN_LIGHT = new Color({red: 0, green: 0, blue: 0});
+export const THEME_BLUE_DARK = new Color({red: 0, green: 0, blue: 0});
+export const THEME_BLUE_LIGHT = new Color({red: 0, green: 0, blue: 0});
+export const THEME_MAGENTA_DARK = new Color({red: 0, green: 0, blue: 0});
+export const THEME_MAGENTA_LIGHT = new Color({red: 0, green: 0, blue: 0});
+export const THEME_ORANGE_DARK = new Color({red: 0, green: 0, blue: 0});
+export const THEME_ORANGE_LIGHT = new Color({red: 0, green: 0, blue: 0});

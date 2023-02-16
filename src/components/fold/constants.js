@@ -16,17 +16,17 @@ export const FLUCTUATION_RADIUS = 15;
 export const FLUCTUATION_MAGNITUDE = 0.5;
 export const DECAY_FACTOR = 0.95;
 
-export const MOVE_RATE = 0.2;
+export const MOVE_RATE = 0.4;
 export const T = 10;
-export const VECOCITY_DECAY_RATE = 1;
-export const VWEIGHT = 100000000;
+export const VECOCITY_DECAY_RATE = 0.5;
+export const VWEIGHT = 2;
 
 export const G0 = [0, 0];
-export const G1 = [1200, 400];
+export const G1 = [1200, 600];
 export const CELL_SIZE = [(G1[X] - G0[X]) / GRID_SIZE[X], (G1[Y] - G0[Y]) / GRID_SIZE[Y]];
 
-export const RAD = 2;
-export const BASE = 3;
+export const RAD = 8;
+export const BASE = 1;
 
 // var MOUSE_BUFFER = 10;
 export var MAX_GRID_BUFFER_SIZE = 10;

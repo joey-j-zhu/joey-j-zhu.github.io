@@ -32,7 +32,7 @@ function localToGlobal(c) {
 
 function drawCircle(canvas, c, radius) {
     canvas.beginPath();
-    canvas.arc(c[X], c[Y], radius, 0 , 2 * Math.PI);
+    canvas.arc(c[X], c[Y], radius * 2, 0 , 2 * Math.PI);
     canvas.fillStyle = BASE_COLOR;
     canvas.fill();
 }
@@ -122,7 +122,7 @@ const FoldGraphics = ({
                 }
                 
                 if ((x + y) % 2 == 0) {
-                    var fog = Math.min(1, Math.max(0, blend + y/15));
+                    var fog = Math.min(1, Math.max(0, blend + y/15)) * 0.6;
                     r += fog * (bgRed - r);
                     g += fog * (bgGreen - g);
                     b += fog * (bgBlue - b);
@@ -146,12 +146,12 @@ const FoldGraphics = ({
     if (ctx != null && system != undefined) {
         ctx.clearRect(G0[X], G0[Y], G1[X], G1[Y]);
         var bg = 0.1;
-        var speed = 10 - 7.7 * (1 - Math.exp(-system.timer / 500));
+        var speed = 1;
         var yRot =  1;
         var xRot = 0;
-        render(ctx, system.smoothGrid, -(system.timer / speed) % (CELL_SIZE[X] * 2)  - 4 * xRot, -4 * yRot,
-                bg, bg, bg, 0.2,
-                0, 2 * Math.trunc((system.timer / speed) / (CELL_SIZE[X] * 2)), 0.6);
+        // render(ctx, system.smoothGrid, -(system.timer / speed) % (CELL_SIZE[X] * 2)  - 4 * xRot, -4 * yRot,
+        //         bg, bg, bg, 0.2,
+        //         0, 2 * Math.trunc((system.timer / speed) / (CELL_SIZE[X] * 2)), 0.6);
 
         render(ctx, system.smoothGrid, -(system.timer / speed) % (CELL_SIZE[X] * 2), 0,
                 bg, bg, bg, -0.5,

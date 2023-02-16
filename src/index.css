@@ -1,7 +1,26 @@
 
 body {
-  margin: 0;
+  --page-width: 1200px;
+  --cover-height: 500px;
+  max-width: 1350px;
+  margin: 0 auto;
+
+  --theme-gray-6b: #000000;
+  --theme-gray-4b: #000000;
+  --theme-gray-2b: #000000;
+  --theme-gray-2h: #000000;
+  --theme-gray-4h: #000000;
+  --theme-gray-6h: #000000;
+  --theme-green-dark: #000000;
+  --theme-green-light: #000000;
+  --theme-blue-dark: #000000;
+  --theme-blue-light: #000000;
+  --theme-magenta-dark: #000000;
+  --theme-magenta-light: #000000;
+  --theme-orange-dark: #000000;
+  --theme-orange-light: #000000;
   background-color: #303030;
+
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -9,15 +28,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+.main-section {
+  width: var(--page-width); 
+  margin-left: 20px;
+  margin-right: 20px;
 
-body {
-  --page-width: 1200px;
-  --cover-height: 500px;
-
-  max-width: 1350px;
-  margin: 0 auto;
+  background-color: #404040;
+  color: white;
 }
