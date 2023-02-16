@@ -12,7 +12,7 @@ export const FADE_RATE = 0.99;
 export const MAX_SWAP_RANGE = 3;
 export const SWAPS_PER_FRAME = 100; // Number of diffusion swaps per frame
 export const SWAP_FRACTION = 0.75; // Amount of mixing per frame
-export const FLUCTUATION_RADIUS = 10;
+export const FLUCTUATION_RADIUS = 15;
 export const FLUCTUATION_MAGNITUDE = 0.5;
 export const DECAY_FACTOR = 0.95;
 
@@ -22,7 +22,7 @@ export const VECOCITY_DECAY_RATE = 1;
 export const VWEIGHT = 100000000;
 
 export const G0 = [0, 0];
-export const G1 = [1250, 625];
+export const G1 = [1200, 400];
 export const CELL_SIZE = [(G1[X] - G0[X]) / GRID_SIZE[X], (G1[Y] - G0[Y]) / GRID_SIZE[Y]];
 
 export const RAD = 2;

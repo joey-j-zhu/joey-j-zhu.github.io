@@ -61,21 +61,22 @@ function drawCross(canvas, center, length, thickness, color) {
 
 function drawDiagCross(canvas, center, length, thickness, color, mult, jump, timer) {
     function transform(c) {    
-        //console.log(c);
-        c[Y] += 4 * Math.sin(0.01 * c[X] + 0.01 * c[Y] - 0.02 * timer) * (1 - Math.exp(-timer / 5000));
-        c[X] += 6 * Math.cos(0.01 * c[X] - 0.01 * c[Y] - 0.02 * timer) * (1 - Math.exp(-timer / 5000));
-        var stretch = (c[Y] - G1[Y]) * (c[Y] - G1[Y]);
+        // //console.log(c);
+        // c[Y] += 4 * Math.sin(0.01 * c[X] + 0.01 * c[Y] - 0.02 * timer) * (1 - Math.exp(-timer / 5000));
+        // c[X] += 6 * Math.cos(0.01 * c[X] - 0.01 * c[Y] - 0.02 * timer) * (1 - Math.exp(-timer / 5000));
+        // var stretch = (c[Y] - G1[Y]) * (c[Y] - G1[Y]);
         
-        var newX = (c[X] - G1[X] / 2) * (1 + b * stretch) + G1[X] / 2;
-        var newY = c[Y] - a * stretch + d * (c[X] - G1[X] / 2) * (c[X] - G1[X] / 2);
+        // var newX = (c[X] - G1[X] / 2) * (1 + b * stretch) + G1[X] / 2;
+        // var newY = c[Y] - a * stretch + d * (c[X] - G1[X] / 2) * (c[X] - G1[X] / 2);
 
-        // var mouseForce = 6 *  warp / (0.7 + 0.001 * mag2([smoothC[X] - newX, smoothC[Y] - newY]));
-        var mouseForce = 0;
-        //newX += (smoothC[X] - newX) * mouseForce;
-        //newY += (smoothC[Y] - newY) * mouseForce + jump;
-        newY += jump;
+        // // var mouseForce = 6 *  warp / (0.7 + 0.001 * mag2([smoothC[X] - newX, smoothC[Y] - newY]));
+        // var mouseForce = 0;
+        // //newX += (smoothC[X] - newX) * mouseForce;
+        // //newY += (smoothC[Y] - newY) * mouseForce + jump;
+        // newY += jump;
         
-        return [newX, newY];
+        // return [newX, newY];
+        return c;
     }
 
     length = Math.max(0, length - 0.45) * mult;
