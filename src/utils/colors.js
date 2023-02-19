@@ -35,7 +35,7 @@ export class Color {
     }
 }
 
-export const THEME_GRAY_6B = new Color({red: 45, green: 42, blue: 48});
+export const THEME_GRAY_6B = new Color({red: 45, green: 42, blue: 52});
 export const THEME_GRAY_4B = new Color({red: 63, green: 57, blue: 68});
 export const THEME_GRAY_2B = new Color({red: 78, green: 70, blue: 66});
 export const THEME_GRAY_4H = new Color({red: 159, green: 149, blue: 173});
@@ -72,16 +72,16 @@ export function themeTransientCycle(startColor, endColor, t, interpolationFuncti
     } else {
         baseColor = interpolateColor(THEME_BLUE, endColor, (t - 0.8) / 0.2, interpolationFunction);
     }
-    return interpolateColor(baseColor, bgColor, 0.85, interpolationFunction);
+    return interpolateColor(baseColor, bgColor, 0.7, interpolationFunction);
 }
 
 
-// console.log(THEME_GRAY_6B_HEX,
-//     THEME_GRAY_4B_HEX, 
-//     THEME_GRAY_2B_HEX, 
-//     THEME_GRAY_4H_HEX, 
-//     THEME_GRAY_6H_HEX, 
-//     THEME_GREEN_HEX, 
-//     THEME_BLUE_HEX, 
-//     THEME_MAGENTA_HEX, 
-//     THEME_ORANGE_HEX);
+console.log(THEME_GRAY_6B_HEX,
+    THEME_GRAY_4B_HEX, 
+    THEME_GRAY_2B_HEX, 
+    THEME_GRAY_4H_HEX, 
+    THEME_GRAY_6H_HEX, 
+    THEME_GREEN_HEX, 
+    THEME_BLUE_HEX, 
+    THEME_MAGENTA_HEX, 
+    THEME_ORANGE_HEX);

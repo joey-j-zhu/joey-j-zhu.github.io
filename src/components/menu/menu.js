@@ -20,8 +20,9 @@ function Menu() {
                 float:"left",
                 }}>
                 <CenterButton //TODO: change to home button
-                    label = "Joey Zhu"
+                    label = "JOEY ZHU"
                     navigation = {0}
+                    fontFamily = "Nunito ExtraBold"
                 />
             </div>
             

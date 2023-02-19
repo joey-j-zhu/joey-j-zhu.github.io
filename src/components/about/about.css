@@ -3,38 +3,30 @@
   }
 
 .about-section {
-    width: var(--page-width); 
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-top: 100px;
-    padding-bottom: 100px;
+  width: var(--page-width); 
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 40px;
+  padding-left: 100px;
+  padding-top: 100px;
+  padding-bottom: 100px;
 
-  
-    color: white;
-    background-color: var(--theme-gray-6b);
+  color: white;
+  background-color: var(--theme-gray-6b);
 
-    overflow: hidden;
-    position: relative;
-  }
+  z-index: 1000;
+  overflow: hidden;
+  position: relative;
+}
 
 .about-section-overlay {
-  opacity: 0.16;
+  opacity: 0.3;
   position: absolute;
   left: 0;
   top: 0;
   width: 100%;
   height: auto;
+  z-index: -1000;
   mix-blend-mode: multiply;
-}
-
-.about-me {
-  width: var(--page-width); 
-
-  border: 1px solid green;
-  padding: 50px;
 }
   

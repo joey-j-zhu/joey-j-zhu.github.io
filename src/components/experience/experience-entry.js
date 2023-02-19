@@ -1,65 +1,74 @@
 import React, { useState, useEffect } from "react";
 import { interpolateTrig } from "../../utils/functions";
-import { Color, interpolateColor, THEME_GREEN, THEME_GRAY_4B, THEME_GRAY_6B, THEME_GRAY_6H} from "../../utils/colors";
+import "../../index.css";
+import { Color, interpolateColor, THEME_GREEN, THEME_GRAY_4B, THEME_GRAY_6B, THEME_GRAY_6H, WHITE, themeTransientCycle } from "../../utils/colors";
 
-const ExperienceEntry = ({
-        selectedIndex, // State
-        selectIndex,   // Function
-        thisIndex,
-        contents,
-    }) => {
+const ExperienceEntry = (props) => {
     
-    // Idle loop to update transition states
+    const incrementSize = 0.05;
+    const tickLength = 10;
+
+    const [isHovering, setIsHovering] = useState(false);
+    const [hoverParam, setHoverParam] = useState(0);
     const [transient, setTransient] = useState(0);
     const [isSelected, setIsSelected] = useState(false);
-    const incrementSize = 0.05;
+    
     useEffect(() => {
         const interval = setInterval(() => {
             setTransient(isSelected ? (transient < 1 ? transient + incrementSize : 1)
-                : (transient > 0 ? transient - incrementSize : 0))
+                : (transient > 0 ? transient - incrementSize : 0));
+            setHoverParam(isHovering ? (hoverParam < 1 ? hoverParam + incrementSize : 1) 
+                : (hoverParam > 0 ? hoverParam - incrementSize : 0));
         }, 10);
         return () => clearInterval(interval);
-      }, [transient, setTransient, isSelected]);
+      }, [transient, setTransient, isSelected, hoverParam, setHoverParam, isHovering, setIsHovering]);
 
     useEffect(() => {
-        setIsSelected(thisIndex == selectedIndex);
-    }, [selectedIndex]);
+        setIsSelected(props.thisIndex == props.selectedIndex);
+    }, [props.selectedIndex]);
 
     const select = () => {
-        selectIndex(thisIndex == selectedIndex ? -1 : thisIndex);
+        props.selectIndex(props.thisIndex == props.selectedIndex ? -1 : props.thisIndex);
     };
 
     // Rendering
     var windowHeight = interpolateTrig(0, 100, transient).toString() + "px";
     var verticalPadding = interpolateTrig(0, 20, transient).toString() + "px";
 
-    var idleColor = THEME_GRAY_6B;
-    var activeColor = THEME_GREEN;
-    var color = interpolateColor(idleColor, activeColor, transient, interpolateTrig);
+    var renderColor = interpolateColor(THEME_GRAY_6B, THEME_GRAY_6H, hoverParam, interpolateTrig);
 
     return (
-        <div onClick={() => select()} >
+        <div 
+        onClick={() => select()} 
+        onMouseEnter={() => setIsHovering(true)}
+        onMouseLeave={() => setIsHovering(false)}>
             <div className="experience-entry"style={{
                 height: "100px",
-                borderColor: color.getHex(),
+                borderColor: (transient > 0 ?
+                    themeTransientCycle(THEME_GREEN, renderColor, 1 - transient, interpolateTrig).getHex()
+                    :
+                    renderColor.getHex()),
+                borderWidth: "1.5px",
                 borderBottomLeftRadius: transient > 0 ? "0px" : "10px",
                 borderBottomRightRadius: transient > 0 ? "0px" : "10px",
             }}>
                 <div>
                     <div style={{
-                        fontSize: "12px",
+                        fontSize: "14px",
+                        fontFamily: 'Nunito Regular',
                         color: THEME_GRAY_6H.getHex(),
                         float: "left",
                     }}>
-                        {contents.location}
+                        {props.contents.location}
                     </div>
 
                     <div style={{
-                        fontSize: "12px",
+                        fontSize: "14px",
+                        fontFamily: 'Nunito Regular',
                         color: THEME_GRAY_6H.getHex(),
                         float: "right",
                     }}>
-                        {contents.date}
+                        {props.contents.date}
                     </div>
                 </div>
 
@@ -67,12 +76,13 @@ const ExperienceEntry = ({
                     clear: "left",
                 }}>
                     <div style={{
+                        fontFamily: 'Nunito ExtraBold',
                         fontSize: "24px",
                         marginTop: "10px",
                         marginBottom: "10px",
                         float: "left",
                     }}>
-                        {contents.company}
+                        {props.contents.company}
                     </div>
                 </div>
                 
@@ -81,9 +91,11 @@ const ExperienceEntry = ({
                 }}>
                     <div style={{
                         float: "left",
+                        fontFamily: 'Nunito Bold',
+                        fontSize: "18px",
                         color: THEME_GREEN.getHex(),
                     }}>
-                        {contents.title}
+                        {props.contents.title}
                     </div>
                 </div>
             </div>
@@ -94,7 +106,7 @@ const ExperienceEntry = ({
                     paddingBottom: verticalPadding,
                     overflow: "hidden",
                 }}>
-                    {contents.description}
+                    {props.children}
                 </div>
             }
         </div>

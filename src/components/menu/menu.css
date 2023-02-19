@@ -8,7 +8,7 @@
   color: white;
   overflow: hidden;
   background-color: var(--theme-gray-6b);
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 .menu-overlay {

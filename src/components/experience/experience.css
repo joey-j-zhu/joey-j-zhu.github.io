@@ -31,13 +31,10 @@
 
   margin: 20px;
   padding: 40px;
-
-  border: 1px solid green;
-
 }
 
 .experience-entry {
-  width: 400px; 
+  width: 500px; 
 
   margin-top: 20px;
   margin-bottom: 0px;
@@ -45,7 +42,7 @@
   margin-right: 20px;
 
   padding-top: 20px;
-  padding-bottom: 0px;
+  padding-bottom: 10px;
   padding-left: 20px;
   padding-right: 20px;
 
@@ -59,23 +56,23 @@
 }
 
 .experience-entry-description {
-  width: 400px; 
+  width: 500px; 
 
   margin-left: 20px;
   margin-right: 20px;
 
   padding-left: 20px;
   padding-right: 20px;
+  padding-top: -50px;
 
   border-width: 1px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   border-style: solid;
-  border-color: #505050;
 
   filter: drop-shadow(10px 10px 10px #202020);
 
-  color: #a0a0a0;
+  color: var(--theme-gray-4h);
 }
 
 .skill {

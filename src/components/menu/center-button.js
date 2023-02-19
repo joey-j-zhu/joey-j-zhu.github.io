@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../../index.css';
-import { THEME_GRAY_6H, WHITE, interpolateColor, themeTransientCycle } from '../../utils/colors';
+import { THEME_GRAY_6H, WHITE, interpolateColor, themeTransientCycle, THEME_GREEN } from '../../utils/colors';
 import { interpolateTrig } from '../../utils/functions';
 
 import { parseJsonProps, getComponentById, registerComponent } from '../../utils/mapping';
@@ -8,6 +8,7 @@ import { parseJsonProps, getComponentById, registerComponent } from '../../utils
 const CenterButton = ({
     label,
     navigation,
+    fontFamily,
 }) => {
 
     const incrementSize = 0.05;
@@ -34,19 +35,19 @@ const CenterButton = ({
         });
     };
 
-    const renderColor = interpolateColor(THEME_GRAY_6H, WHITE, hoverParam, interpolateTrig);
+    const renderColor = interpolateColor(THEME_GRAY_6H, THEME_GREEN, hoverParam, interpolateTrig);
 // Rendering
     return (
         <div className="menu-button" 
         onClick={() => navigate()}
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}>
-
             <div style={{
                 color: (transient > 0 ?
                     themeTransientCycle(WHITE, renderColor, 1 - transient, interpolateTrig).getHex()
                     :
-                    renderColor.getHex())
+                    renderColor.getHex()),
+                fontFamily: fontFamily,
                 }}>
                 {label}
             </div>

@@ -34,8 +34,18 @@ function Experience() {
           date: "AUG 2019 - DEC 2022",
           company: "University of California, Berkeley",
           title: "B.A. Computer Science, Physics Minor",
-          description: "description here",
-        }}/>
+        }}>
+          <div>
+            <p>
+              <a href="https://github.com/np-eazy/fa22-cs182-proj">
+                <i class="fa fa-external-link" aria-hidden="true"></i>
+                {" CS 182 Project: Quantum Solver Neural Network"}
+              </a>
+            </p>
+            <p>Computer Science: </p>
+          </div>
+        </ExperienceEntry>
+
         <ExperienceEntry 
         selectedIndex = {index}
         selectIndex = {setIndex}
@@ -45,8 +55,23 @@ function Experience() {
           date: "JAN 2022 - MAY 2022",
           company: "Amazon",
           title: "Fullstack Software Engineer (Intern)",
-          description: "description here",
-        }}/>
+        }}>
+          <div>
+            <p>
+              <a href="https://www.amazon.jobs/en/job_categories/legal">
+                <i class="fa fa-external-link" aria-hidden="true"></i>
+                {" About Amazon Legal"}
+              </a>
+            </p>
+            <p>
+              <a href="https://docs.google.com/presentation/d/15Std3z7t5vRNOcDTAjejsS1LZsHvqzqC/edit#slide=id.g1e023731a5e_0_77">
+                <i class="fa fa-external-link" aria-hidden="true"></i>
+                {" Access Request Form Presentation"}
+              </a>
+            </p>
+          </div>
+        </ExperienceEntry>
+
         <ExperienceEntry 
         selectedIndex = {index}
         selectIndex = {setIndex}
@@ -56,8 +81,17 @@ function Experience() {
           date: "MAY 2022 - AUG 2022",
           company: "NimbleRx Pharmacy",
           title: "Backend Software Engineer (Intern)",
-          description: "description here",
-        }}/>
+        }}>
+          <div>
+            <p>
+              <a href="https://www.nimblerx.com/about">
+                <i class="fa fa-external-link" aria-hidden="true"></i>
+                {" About NimbleRx"}
+              </a>
+            </p>
+          </div>
+        </ExperienceEntry>
+
         <ExperienceEntry 
         selectedIndex = {index}
         selectIndex = {setIndex}
@@ -67,8 +101,24 @@ function Experience() {
           date: "AUG 2019 - DEC 2022",
           company: "Lawrence Berkeley Ntl. Lab",
           title: "Software Engineer and Researcher (Intern)",
-          description: "description here",
-        }}/>
+        }}>
+          <div>
+            <p>
+              <a href="https://github.com/ECP-WarpX/impactx/issues/104#issuecomment-1275922946">
+                <i class="fa fa-external-link" aria-hidden="true"></i>
+
+                {" About ImpactX"}
+              </a>
+            </p>
+            <p>
+              <a href="https://github.com/ECP-WarpX/impactx/issues/104#issuecomment-1275922946">
+                <i class="fa fa-external-link" aria-hidden="true"></i>
+
+                {" MadX Parser Design Notes"}
+              </a>
+            </p>
+          </div>
+        </ExperienceEntry>
       </div>
 
       <div style={{float:"left"}}>

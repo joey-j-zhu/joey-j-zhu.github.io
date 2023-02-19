@@ -15,8 +15,15 @@ function Fold() {
                 </div>
                 <div class="box overlay">
                     <div style={{float:"left", display:"flex"}}>
-                        <img src="assets/cover-picture.jpg" height="600px" style={{float:"left"}}></img>
-                        <div className="fold-title" style={{float:"right"}}>
+                        <img src="assets/cover-picture-cropped.jpg" style={{
+                            float:"left",
+                            height: "600px",
+                            overflow: "hidden",
+                        }}></img>
+                        <div className="fold-title" style={{
+                            float:"right",
+                            maxWidth: "550px",
+                            }}>
                             <h1>Hey, I'm Joey.</h1>
                             <h3>Software engineer and aspiring multimedia artist from the Bay Area</h3>
                         </div>

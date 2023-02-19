@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../../index.css';
-import { THEME_GRAY_6H, WHITE, interpolateColor, themeTransientCycle } from '../../utils/colors';
+import { THEME_GRAY_6H, WHITE, interpolateColor, themeTransientCycle, THEME_GREEN } from '../../utils/colors';
 import { interpolateTrig } from '../../utils/functions';
 
 
@@ -28,7 +28,7 @@ const SideButton = (props) => {
         window.location.href = props.navigation;
     };
 
-    const renderColor = interpolateColor(THEME_GRAY_6H, WHITE, hoverParam, interpolateTrig);
+    const renderColor = interpolateColor(THEME_GRAY_6H, THEME_GREEN, hoverParam, interpolateTrig);
     // Rendering
     return (
         <div className="menu-side-button" 

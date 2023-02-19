@@ -9,14 +9,11 @@
     height: 600px;
     margin-left: 20px;
     margin-right: 20px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    padding: 50px;
+    margin-top: 20px;
   
     color: white;
     background-color: var(--theme-gray-6b);
-    overflow: hidden;
-
+    filter: drop-shadow(10px 10px 10px #1a1a1a);
   }
 
   .fold-background {
@@ -24,13 +21,12 @@
     height: 600px;
     margin-left: 20px;
     margin-right: 20px;
-    margin-top: 0px;
-    margin-bottom: 0px;
+    margin-top: 20px;
 
     color: white;
     background-image: linear-gradient(var(--theme-gray-4b), var(--theme-gray-6b));
     overflow: hidden;
-
+    filter: drop-shadow(10px 10px 10px #101014);
   }
 
 .fold-overlay {
@@ -53,12 +49,13 @@
 }
 
 .fold-title {
-  padding-left: 50px;
+  padding-left: 80px;
   padding-top: 200px;
 }
 
 .container {
   position: relative;
+  margin-top: -20px;
 }
 
 .box {
