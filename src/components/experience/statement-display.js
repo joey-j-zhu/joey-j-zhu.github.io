@@ -5,15 +5,12 @@ export default class StatementDisplay extends React.Component {
         props,
     }) {
         super();
-        this.statement = props.statement;
-        console.log()
     }
 
     render() {
         return (
-            <div className="statement-box">
-                <h3>___</h3>
-                <h3>{this.statement}</h3>
+            <div>
+                {this.props.children}
             </div>
         );
     }

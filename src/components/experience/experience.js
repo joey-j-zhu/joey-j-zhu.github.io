@@ -21,10 +21,26 @@ function Experience() {
       <div style={{float:"left"}}>
         <StatementDisplay props = {{
           statement: "lorem ipsum",
-        }}/>
+        }}>
+          <div className="statement-box">
+              ___
+              <br></br>
+              <br></br>
+              {"I love learning and experiencing processes where innovative ideas give rise to impactful products that truly benefit users."}
+          </div>
+        </StatementDisplay>
+      </div>
+
+      <div style={{
+        marginTop: "300px",
+        minHeight: "0px",
+        float: "left",
+      }}>
       </div>
       
-      <div style={{float:"right"}}>
+      <div style={{
+        float:"right",
+        }}>
         <ExperienceEntry 
         selectedIndex = {index}
         selectIndex = {setIndex}

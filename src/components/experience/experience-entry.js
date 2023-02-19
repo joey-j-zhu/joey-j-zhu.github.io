@@ -76,7 +76,7 @@ const ExperienceEntry = (props) => {
                     clear: "left",
                 }}>
                     <div style={{
-                        fontFamily: 'Nunito ExtraBold',
+                        fontFamily: 'Nunito Bold',
                         fontSize: "24px",
                         marginTop: "10px",
                         marginBottom: "10px",
@@ -91,7 +91,7 @@ const ExperienceEntry = (props) => {
                 }}>
                     <div style={{
                         float: "left",
-                        fontFamily: 'Nunito Bold',
+                        fontFamily: 'Nunito Regular',
                         fontSize: "18px",
                         color: THEME_GREEN.getHex(),
                     }}>

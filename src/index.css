@@ -14,7 +14,8 @@ body {
   --theme-blue: #42d2ea;
   --theme-magenta: #ea4ba6;
   --theme-orange: #ef8e2e;
-  background-color: #232028;
+  --background-color: #232028;
+  background-color: var(--background-color);
 
   font-family: 'Nunito', 'Nunito Bold', 'Nunito ExtraBold', 'Nunito Light', sans-serif;
   -webkit-font-smoothing: antialiased;

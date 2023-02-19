@@ -1,8 +1,4 @@
-:fold{
-    --border-color: red;
-    filter: drop-shadow(10px 10px 10px #000000);
 
-  }
 
 .fold-section {
     width: var(--page-width); 

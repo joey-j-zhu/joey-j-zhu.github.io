@@ -11,12 +11,14 @@
   padding-top: 100px;
   padding-bottom: 100px;
 
-  color: white;
-  background-color: var(--theme-gray-6b);
-
   z-index: 1000;
   overflow: hidden;
   position: relative;
+
+  color: white;
+  background-color: var(--theme-gray-6b);
+
+  border-bottom-right-radius: 150px;
 }
 
 .about-section-overlay {

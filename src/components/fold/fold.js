@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../../index.css';
+import DynamicText from './dynamic-text';
+import { THEME_GRAY_6H } from '../../utils/colors';
 
 import FoldCanvas from './fold-canvas';
 
@@ -25,7 +27,12 @@ function Fold() {
                             maxWidth: "550px",
                             }}>
                             <h1>Hey, I'm Joey.</h1>
-                            <h3>Software engineer and aspiring multimedia artist from the Bay Area</h3>
+                            <DynamicText
+                            subtitle="Software engineer and aspiring multimedia artist from the Bay Area"
+                            baseStyle={{fontFamily:"Nunito Regular",
+                                        fontSize: "24px",
+                                        color: THEME_GRAY_6H.getHex()}}
+                            />
                         </div>
                     </div>
                 </div>

@@ -3,26 +3,27 @@
 }
 
 .experience-section {
-  width: var(--page-width); 
-  height: 1000px;
+  max-width: var(--page-width); 
+  height: 1250px;
   margin-left: 20px;
   margin-right: 20px;
   margin-top: 0px;
   margin-bottom: 0px;
-  padding: 50px;
+  padding: 100px;
+  padding-right: 50px;
+
 
   color: white;
-  background-color: var(--theme-gray-6b);
+  background-image: linear-gradient(to right, var(--theme-gray-6b), var(--background-color));
 }
-
 
 .statement-box {
   width: 400px; 
-
-  margin: 20px;
-  padding: 50px;
-
-  border: 1px solid green;
+  margin-bottom: 150px;
+  font-family: "Nunito Regular";
+  font-size: 24px;
+  color: var(--theme-green);
+  line-height: 1.5;
 }
 
 .experience-list {
@@ -30,11 +31,12 @@
   height: 800px;
 
   margin: 20px;
-  padding: 40px;
+  margin-top: 50px;
+  padding-top: 100px;
 }
 
 .experience-entry {
-  width: 500px; 
+  width: 450px; 
 
   margin-top: 20px;
   margin-bottom: 0px;
@@ -52,11 +54,11 @@
   border-style: solid;
 
   background-image: linear-gradient(var(--theme-gray-4b), var(--theme-gray-6b));
-  filter: drop-shadow(10px 10px 10px #202020);
+  filter: drop-shadow(10px 10px 10px #202024);
 }
 
 .experience-entry-description {
-  width: 500px; 
+  width: 450px; 
 
   margin-left: 20px;
   margin-right: 20px;
@@ -70,22 +72,18 @@
   border-bottom-right-radius: 10px;
   border-style: solid;
 
-  filter: drop-shadow(10px 10px 10px #202020);
+  filter: drop-shadow(10px 10px 10px #202024);
 
   color: var(--theme-gray-4h);
 }
 
 .skill {
-  font-size: "18px";
-  margin: "5px";
+  margin: 5px;
+
+  font-family: "Nunito Bold";
+  font-size: 18px;
+  line-height: 1.5;
+
   filter: drop-shadow(6px 6px 4px #1a1a1a);
 }
 
-.skill-box {
-  width: 400px; 
-  height: 600px;
-  margin: 20px;
-  border: 1px solid green;
-  padding: 50px;
-
-}

@@ -107,7 +107,7 @@ const FoldGraphics = ({
         var c;
         var l;
         for (var y = 0; y < GRID_SIZE[Y]; y++) {
-            for (var x = 0; x < GRID_SIZE[X]; x++) {
+            for (var x = 10; x < GRID_SIZE[X]-5; x++) {
                 var xPrime = (x + xShift) % GRID_SIZE[X];
                 l = BASE + RAD * (grid.getVal(xPrime, y)) * 2;
                 c = localToGlobal([x + 0.5, y + 0.5]);
