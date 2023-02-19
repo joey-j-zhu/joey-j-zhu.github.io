@@ -81,7 +81,7 @@
 .skill {
   font-size: "18px";
   margin: "5px";
-  filter: drop-shadow(2px 2px 4px #1a1a1a);
+  filter: drop-shadow(6px 6px 4px #1a1a1a);
 }
 
 .skill-box {

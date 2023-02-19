@@ -13,7 +13,12 @@ function Menu() {
             <div className="menu-overlay">
                 <img src="assets/about_me/background.jpg" alt="lmao u suck" width="2000px"/>
             </div>
-            <div style={{float:"left"}}>
+
+            <div style={{
+                display: "flex",
+                marginLeft: "50px",
+                float:"left",
+                }}>
                 <CenterButton //TODO: change to home button
                     label = "Joey Zhu"
                     navigation = {0}
@@ -21,35 +26,38 @@ function Menu() {
             </div>
             
             <div style={{
-                minWidth:"500px",
                 display: "flex",
                 float:"right",
+                marginRight: "50px",
                 }}>
                 <SideButton
                     label = "Email"
-                    navigation = "mailto:joey.j.zhu@gmail.com"
-                />
+                    navigation = "mailto:joey.j.zhu@gmail.com">
+                    <i class="fa fa-envelope" fontSize="24px"></i>
+                </SideButton>
                 <SideButton
                     label = "Linkedin"
-                    navigation = "https://www.linkedin.com/in/joey-j-zhu"
-                />
+                    navigation = "https://www.linkedin.com/in/joey-j-zhu">
+                    <i class="fa fa-linkedin-square" fontSize="24px"></i>
+                </SideButton>
                 <SideButton
                     label = "Github"
-                    navigation = "https://github.com/np-eazy"
-                />
+                    navigation = "https://github.com/np-eazy">
+                    <i class="fa fa-github" fontSize="24px"></i>
+                </SideButton>
             </div>
 
             <div className="center-options">
                 <CenterButton
-                    label = "About"
+                    label = "about"
                     navigation = {900}
                 />
                 <CenterButton
-                    label = "Skills"
+                    label = "skills"
                     navigation = {1350}
                 />
                 <CenterButton
-                    label = "Services"
+                    label = "services"
                     navigation = {2500}
                 />
             </div>

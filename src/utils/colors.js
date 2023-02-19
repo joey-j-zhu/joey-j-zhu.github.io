@@ -44,6 +44,7 @@ export const THEME_GREEN = new Color({red: 84, green: 239, blue: 209});
 export const THEME_BLUE = new Color({red: 66, green: 210, blue: 234});
 export const THEME_MAGENTA = new Color({red: 234, green: 75, blue: 166});
 export const THEME_ORANGE = new Color({red: 239, green: 142, blue: 46});
+export const WHITE = new Color({red: 255, green: 255, blue: 255});
 
 export const THEME_GRAY_6B_HEX = THEME_GRAY_6B.getHex();
 export const THEME_GRAY_4B_HEX = THEME_GRAY_4B.getHex();
@@ -55,12 +56,32 @@ export const THEME_BLUE_HEX = THEME_BLUE.getHex();
 export const THEME_MAGENTA_HEX = THEME_MAGENTA.getHex();
 export const THEME_ORANGE_HEX = THEME_ORANGE.getHex();
 
-console.log(THEME_GRAY_6B_HEX,
-    THEME_GRAY_4B_HEX, 
-    THEME_GRAY_2B_HEX, 
-    THEME_GRAY_4H_HEX, 
-    THEME_GRAY_6H_HEX, 
-    THEME_GREEN_HEX, 
-    THEME_BLUE_HEX, 
-    THEME_MAGENTA_HEX, 
-    THEME_ORANGE_HEX);
+export function themeTransientCycle(startColor, endColor, t, interpolationFunction) {
+    var baseColor;
+    var bgColor = interpolateColor(startColor, endColor, t, interpolationFunction);
+    if (t < 0.2) {
+        baseColor = interpolateColor(startColor, THEME_GREEN, (t - 0) / 0.2, interpolationFunction);
+    } else if (t < 0.35) {
+        baseColor = interpolateColor(THEME_GREEN, THEME_BLUE, (t - 0.2) / 0.15, interpolationFunction);
+    } else if (t < 0.5) {
+        baseColor = interpolateColor(THEME_BLUE, THEME_MAGENTA, (t - 0.35) / 0.15, interpolationFunction);
+    } else if (t < 0.65) {
+        baseColor = interpolateColor(THEME_MAGENTA, THEME_ORANGE, (t - 0.5) / 0.15, interpolationFunction);
+    } else if (t < 0.8) {
+        baseColor = interpolateColor(THEME_ORANGE, THEME_GREEN, (t - 0.65) / 0.15, interpolationFunction);
+    } else {
+        baseColor = interpolateColor(THEME_BLUE, endColor, (t - 0.8) / 0.2, interpolationFunction);
+    }
+    return interpolateColor(baseColor, bgColor, 0.85, interpolationFunction);
+}
+
+
+// console.log(THEME_GRAY_6B_HEX,
+//     THEME_GRAY_4B_HEX, 
+//     THEME_GRAY_2B_HEX, 
+//     THEME_GRAY_4H_HEX, 
+//     THEME_GRAY_6H_HEX, 
+//     THEME_GREEN_HEX, 
+//     THEME_BLUE_HEX, 
+//     THEME_MAGENTA_HEX, 
+//     THEME_ORANGE_HEX);

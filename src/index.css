@@ -22,6 +22,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+a:link {
+  color: var(--theme-gray-6h);
+}
+
+a:visited {
+  color: var(--theme-gray-6h);
+}
+
+a:hover {
+  color: white;
+}
+
 .main-section {
   width: var(--page-width); 
   margin-left: 20px;

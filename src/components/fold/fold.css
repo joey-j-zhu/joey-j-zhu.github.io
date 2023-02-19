@@ -1,5 +1,7 @@
 :fold{
     --border-color: red;
+    filter: drop-shadow(10px 10px 10px #000000);
+
   }
 
 .fold-section {
@@ -14,6 +16,7 @@
     color: white;
     background-color: var(--theme-gray-6b);
     overflow: hidden;
+
   }
 
   .fold-background {
