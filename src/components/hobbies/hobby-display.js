@@ -3,7 +3,7 @@ import { interpolateTrig } from "../../utils/functions";
 import { Color, interpolateColor, } from "../../utils/colors";
 
 import { default as HobbySlideshow } from "./hobby-slideshow";
-import { default as HobbyStatement } from "./hobby-slideshow";
+import { default as HobbyStatement } from "./hobby-statement";
 
 
 const HobbyDisplay = ({
@@ -43,19 +43,34 @@ const HobbyDisplay = ({
     
     var xOffset = 0;
     if (scrollMode == -1) {
-        xOffset = (1 - renderOffset) * 1000 * scrollDirection;
+        xOffset = (1 - interpolateTrig(0, 1, renderOffset)) * 1000 * scrollDirection;
     } else if (scrollMode == 1) {
-        xOffset = (renderOffset) * -1000 * scrollDirection;
+        xOffset = interpolateTrig(0, 1, renderOffset) * -1000 * scrollDirection;
     }
 
     if (contents != undefined) {
         return (
-            <div style={{position: "relative", left: xOffset,}}>
-                <HobbyStatement description="bing chilling" />
-                <HobbySlideshow 
-                imageLinks={contents[renderIndex]}
-                renderParams={{renderOffset: renderOffset, scrollMode: scrollMode}}/>
+            <div>
+                <div style={{
+                position: "relative", 
+                left: xOffset, 
+                opacity:(scrollMode == -1 ? renderOffset : 1 - renderOffset)}}>
+                    <div style={{
+                        float: "left",
+                        width: "550px",
+                        height: "1000px",
+                    }}
+                    >
+                        <HobbyStatement 
+                        description={contents[renderIndex].description} />
+                    </div>
+                
+                    <HobbySlideshow 
+                    imageLinks={contents[renderIndex]}
+                    renderParams={{renderOffset: renderOffset, scrollMode: scrollMode}}/>
+                </div>
             </div>
+            
         );
     } else {
         return (

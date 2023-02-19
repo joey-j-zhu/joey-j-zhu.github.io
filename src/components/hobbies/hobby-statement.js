@@ -3,10 +3,14 @@ import React from 'react';
 const HobbyStatement = ({
     description,
 }) => {
-    return (<div>
+    return (<div style={{
+        width: "550px",
+        marginBottom: "50px",
+        float: "left",
+    }}>
         <h3>___</h3>
-        <h3>description</h3>
+        <p>{description}</p>
     </div>);
-}
+};
 
 export default HobbyStatement;

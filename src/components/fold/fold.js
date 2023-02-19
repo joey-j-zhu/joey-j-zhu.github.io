@@ -13,7 +13,7 @@ function Fold() {
                     <FoldCanvas height={600} width={1300}/>
                 </div>
                 <div className="fold-overlay">
-                    <img src="assets/about_me/background.jpg" alt="lmao u suck" width="1500px"/>
+                    <img src="assets/about_me/background.jpg" width="1500px"/>
                 </div>
                 <div class="box overlay">
                     <div style={{float:"left", display:"flex"}}>

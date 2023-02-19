@@ -19,25 +19,25 @@ function Hobbies() {
         <div>
             <div className="hobbies-menu">
                 <HobbyButton 
-                label = "GRAPHIC DESIGN" 
+                label = "graphic design" 
                 selectedIndex = {index}
                 selectIndex = {setIndex}
                 thisIndex = {0} />
 
                 <HobbyButton 
-                label = "VISUAL ART" 
+                label = "visual art" 
                 selectedIndex = {index}
                 selectIndex = {setIndex}
                 thisIndex = {1} />
 
                 <HobbyButton 
-                label = "PIANO SOLOIST" 
+                label = "piano soloist" 
                 selectedIndex = {index}
                 selectIndex = {setIndex}
                 thisIndex = {2} />
 
                 <HobbyButton 
-                label = "ENSEMBLE CELLIST" 
+                label = "ensemble cellist" 
                 selectedIndex = {index}
                 selectIndex = {setIndex}
                 thisIndex = {3} />
@@ -56,11 +56,13 @@ function Hobbies() {
                                 "assets/cover-picture.jpg",
                                 "assets/cover-picture.jpg",
                                 "assets/cover-picture.jpg",
+                                "assets/cover-picture.jpg",
                             ]
                         },
                         {
                             "description": "Visual Art",
                             "imageLinks": [
+                                "assets/cover-picture.jpg",
                                 "assets/cover-picture.jpg",
                                 "assets/cover-picture.jpg",
                                 "assets/cover-picture.jpg",
@@ -74,11 +76,13 @@ function Hobbies() {
                                 "assets/cover-picture.jpg",
                                 "assets/cover-picture.jpg",
                                 "assets/cover-picture.jpg",
+                                "assets/cover-picture.jpg",
                             ]
                         },
                         {
                             "description": "Ensemble Cellist",
                             "imageLinks": [
+                                "assets/cover-picture.jpg",
                                 "assets/cover-picture.jpg",
                                 "assets/cover-picture.jpg",
                                 "assets/cover-picture.jpg",

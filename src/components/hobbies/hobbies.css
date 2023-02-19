@@ -1,22 +1,25 @@
 .hobbies-menu {
     width: var(--page-width); 
     margin: 20px;
-    border: 1px solid green;
-    padding: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 0px;
+    padding-bottom: 70px;
+    margin-bottom: 60px;
 
     color: white;
-    background-color: #404040;
   }
   
   .hobbies {
     width: var(--page-width); 
     height: 1000px;
     margin: 20px;
-    border: 1px solid green;
     padding: 50px;
+    padding-left: 100px;
+    padding-right: 0px;
 
     color: white;
-    background-color: #404040;
+    background-image: linear-gradient(to right, var(--theme-gray-6b), var(--background-color));
   }
 
 .menu-button {
@@ -28,10 +31,14 @@
 
 .hobby-button {
   width: 100px;
-  height: 50px;
-  display: inline-block;
-  
+  min-height: 65px;
+  display: flex;
+  float: left;
   margin: 20px;
+  justify-content: center;
+  vertical-align: middle;
+  align-items: center;
+  
   border: 1px solid green;
 }
   

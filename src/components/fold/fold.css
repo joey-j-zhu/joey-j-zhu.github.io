@@ -5,7 +5,6 @@
     height: 600px;
     margin-left: 20px;
     margin-right: 20px;
-    margin-top: 20px;
   
     color: white;
     background-color: var(--theme-gray-6b);
@@ -18,11 +17,9 @@
     margin-left: 20px;
     margin-right: 20px;
     margin-top: 20px;
-
     color: white;
-    background-image: linear-gradient(var(--theme-gray-4b), var(--theme-gray-6b));
+    background-image: linear-gradient(to right, var(--theme-gray-4b), var(--background-color));
     overflow: hidden;
-    filter: drop-shadow(10px 10px 10px #101014);
   }
 
 .fold-overlay {
