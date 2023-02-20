@@ -1,154 +1,10 @@
 import {X, Y, G0, G1, MAX_GRID_BUFFER_SIZE, GRID_SIZE,
-    MOVE_RATE, SWAPS_PER_FRAME, RAND_RANGE, MAX_SWAP_RANGE, SWAP_FRACTION, FLUCTUATION_MAGNITUDE,
-    VECOCITY_DECAY_RATE, FADE_RATE, DECAY_FACTOR, FLUCTUATION_RADIUS, VWEIGHT} from './constants.js';
+    MOVE_RATE, SWAPS_PER_FRAME, MAX_SWAP_RANGE, SWAP_FRACTION, FLUCTUATION_MAGNITUDE,
+    VECOCITY_DECAY_RATE, DECAY_FACTOR, FLUCTUATION_RADIUS, VWEIGHT} from './graphic-utils.js';
 
-class Point {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-    }
-    add(other) { this.x += other.x; }
-    subtract(other) { this.y += other.y; }
-    createSum(other) { return new Point(this.x + other.x, this.y + other.y); }
-    createDelta(other) { return Point(other.x - this.x, other.y - this.y); }
-    createInterpolation(other, fraction) { return Point(this.x + fraction * (other.x  - this.x), this.y + fraction * (other.y  - this.y)); }
-    normSquared() { return this.x * this.x + this.y * this.y };
-    norm() { return Math.sqrt(this.normSquared()); }
-    distanceSquared(other) { return this.createDelta(other).normSquared(); }
-    distance(other) { return this.createDelta(other).norm(); }
-}
+import {Grid} from '../../../utils/grid';
+import {interpolate, randint, stoc} from '../../../utils/functions';
 
-class Grid {
-    constructor(xSize, ySize) {
-        this.array = new Array(ySize);
-        this.xSize = xSize;
-        this.ySize = ySize;
-        for (var y = 0; y < ySize; y++) {
-            this.array[y] = new Array(xSize);
-            for (var x = 0; x < xSize; x++) {
-                this.array[y][x] = 0;
-            }
-        }
-    }
-    getVal(x, y) { return this.array[y][x]; }
-    setVal(x, y, val) { this.array[y][x] = val; }
-
-    // Desctructive addition of new grid
-    add(other) { 
-        for (var y = 0; y < this.ySize; y++) {
-            for (var x = 0; x < this.xSize; x++) {
-                this.array[y][x] += other.array[y][x];
-            }        
-        }
-    }
-
-    // Desctructive subtraction of new grid
-    subtract(other) { 
-        for (var y = 0; y < this.ySize; y++) {
-            for (var x = 0; x < this.xSize; x++) {
-                this.array[y][x] -= other.array[y][x];
-            }        
-        }
-    }
-
-    // Destructive scaling of all grid values
-    scale(factor) {
-        for (var y = 0; y < this.ySize; y++) {
-            for (var x = 0; x < this.xSize; x++) {
-                this.array[y][x] *= factor;
-            }        
-        }
-    }
-
-    // Destructively blend with another grid
-    interpolate(other, fraction) { 
-        for (var y = 0; y < this.ySize; y++) {
-            for (var x = 0; x < this.xSize; x++) {
-                this.array[y][x] = this.array[y][x] + fraction * (other.array[y][x] - this.array[y][x]);
-            }        
-        }
-    }
-
-    // Deepcopy this grid's values to another grid
-    copyTo(other) {
-        for (var y = 0; y < this.ySize; y++) {
-            for (var x = 0; x < this.xSize; x++) {
-                other.setVal(x, y, 
-                    this.getVal(x, y));
-            }        
-        }
-    }
-
-    // Constructive addition of new grid
-    createSum(other) {
-        var newGrid = new Grid(this.xSize, this.ySize);
-        for (var y = 0; y < this.ySize; y++) {
-            for (var x = 0; x < this.xSize; x++) {
-                newGrid.array[y][x] = this.array[y][x] + other.array[y][x];
-            }        
-        }
-        return newGrid;
-    }
-
-    // Constructive subtraction of new grid
-    createDelta(other) { 
-        var newGrid = new Grid(this.xSize, this.ySize);
-        for (var y = 0; y < this.ySize; y++) {
-            for (var x = 0; x < this.xSize; x++) {
-                newGrid.array[y][x] = this.array[y][x] + other.array[y][x];
-            }        
-        }
-        return newGrid;
-    }
-
-    // Destructive scaling of all grid values
-    createScale(factor) {
-        var newGrid = new Grid(this.xSize, this.ySize);
-        for (var y = 0; y < this.ySize; y++) {
-            for (var x = 0; x < this.xSize; x++) {
-                newGrid.array[y][x] = this.array[y][x] * factor;
-            }        
-        }
-        return newGrid;
-    }
-
-    createInterpolation(other, fraction) { 
-        var newGrid = new Grid(this.xSize, this.ySize);
-        for (var y = 0; y < this.ySize; y++) {
-            for (var x = 0; x < this.xSize; x++) {
-                newGrid.array[y][x] = this.array[y][x] + fraction * (other.array[y][x] - this.array[y][x]);
-            }        
-        }
-        return newGrid;
-    }
-}
-
-function globalToLocal(c) {
-    return [GRID_SIZE[X] * (c[X] - G0[X]) / (G1[X] - G0[X]), GRID_SIZE[Y] * (c[Y] - G0[Y]) / (G1[Y] - G0[Y])];
-}
-
-function interpolate(a, b, fraction) {
-    return a + fraction * (b - a);
-}
-
-function randint(a, b) {
-    return (a + Math.floor(Math.random() * (b - a)));
-}
-
-// Flip a coin weighted p for True
-function flip(p) {
-    return (Math.random() < p);
-}
-
-function stoc(n) {
-    var fn = Math.floor(n);
-    var d = flip(n - fn);
-    if (d == true) {
-        return fn + 1;
-    } else {
-        return fn;
-    }
-}
 
 function clip(c) {
     return [Math.min(Math.max(0, c[X]), GRID_SIZE[X] - 1), Math.min(Math.max(0, c[Y]), GRID_SIZE[Y] - 1)];
@@ -169,7 +25,6 @@ function boxSample(c, d) {
 function neighbor(c, d, v) {
     return boxSample([c[X] + stoc(v[X]), c[Y] + stoc(v[Y])], d);
 }
-
 
 function transfer(grid, x1, y1, x2, y2, amt1, amt2) {
     var cell1 = grid.getVal(x1, y1);
@@ -207,9 +62,7 @@ function emptyGrid() {
 }
 
 const System = class {
-    constructor ({
-
-    }) {
+    constructor ({}) {
         this.timer = 0;
         this.smoothGrid = emptyGrid();
         this.totalGrid = emptyGrid();
@@ -218,8 +71,7 @@ const System = class {
         this.currGridBufferSize = 1;
         this.canvasSize = [G1[X] - G0[X], G1[Y] - G0[Y]];
         this.ticks = 0;
-        // Grids: mainGrid concerns the actual display/heat values
-        // A vector field is stored in vxGrid and vyGrid
+
         this.mainGrid = emptyGrid();
         this.vxGrid = emptyGrid();
         this.vyGrid = emptyGrid();

@@ -34,12 +34,12 @@ const DynamicText = ({
                     setBuffer([
                         ...buffer.slice(1),
                         themeTransientCycle(baseColor, baseColor, t, interpolateTrig)
-                    ])
+                    ]);
                 } else {
                     setBuffer([
                         ...buffer.slice(1),
                         baseColor
-                    ])
+                    ]);
                 }    
             }
             setTimer(timer + 5);   
@@ -56,7 +56,7 @@ const DynamicText = ({
                     ([key, character]) => {
                         return(
                         <font
-                        style={{color:interpolateColor(THEME_GRAY_6H, buffer[key], 0.5, interpolateTrig).getHex()}}>
+                        style={{color:interpolateColor(WHITE, buffer[key], 0.5, interpolateTrig).getHex()}}>
                             {character}
                         </font>);
                     })   

@@ -8,7 +8,6 @@ export const RAND_RANGE = 1;
 export const FEED_RATE = 0.2;
 export const FADE_RATE = 1;
 
-
 export const MAX_SWAP_RANGE = 3;
 export const SWAPS_PER_FRAME = 250; // Number of diffusion swaps per frame
 export const SWAP_FRACTION = 0.75; // Amount of mixing per frame

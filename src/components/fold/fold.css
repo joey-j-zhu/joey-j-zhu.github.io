@@ -1,47 +1,44 @@
 
-
-.fold-section {
-    width: var(--page-width); 
-    height: 600px;
-    margin-left: 20px;
-    margin-right: 20px;
+.fold-background {
+  width: 1300px; 
+  height: 600px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
   
-    color: white;
-    background-color: var(--theme-gray-6b);
-    filter: drop-shadow(10px 10px 10px #1a1a1a);
-  }
-
-  .fold-background {
-    width: 1300px; 
-    height: 600px;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 20px;
-    color: white;
-    background-image: linear-gradient(to right, var(--theme-gray-4b), var(--background-color));
-    overflow: hidden;
-  }
+  color: white;
+  background-image: linear-gradient(to right, var(--theme-gray-4b), var(--background-color));
+  overflow: hidden;
+}
 
 .fold-overlay {
-  opacity: 0.05;
+  width: 100%;
+  height: auto;
+
   position: absolute;
   left: 0;
   top: 0;
-  width: 100%;
-  height: auto;
-  mix-blend-mode: multiply
-  z-index = 200;
+  z-index: 200;
+
+  mix-blend-mode: multiply;
+  opacity: 0.05;
+}
+
+.cover-picture {
+  height: 600px;
+  float: left;
+  overflow: hidden;
 }
 
 .fold {
   width: var(--page-width);
   height: var(--cover-height);
-
   margin: 20px;
   padding: 50px;
 }
 
 .fold-title {
+  max-width: 550px;
   padding-left: 80px;
   padding-top: 200px;
 }
