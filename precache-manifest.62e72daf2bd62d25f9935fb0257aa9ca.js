@@ -20,20 +20,20 @@ self.__precacheManifest = [
     "url": "/homepage/static/js/runtime~main.16389be8.js"
   },
   {
-    "revision": "1f8f5740309e62a563b8a5c9d59ece3b",
-    "url": "/homepage/static/media/NunitoSans-Black.1f8f5740.ttf"
-  },
-  {
-    "revision": "ac72fe0f27dd514aa3215e8424842062",
-    "url": "/homepage/static/media/NunitoSans-Bold.ac72fe0f.ttf"
-  },
-  {
     "revision": "4dac705158fb1ca226d583b3829f82a0",
     "url": "/homepage/static/media/NunitoSans-Regular.4dac7051.ttf"
   },
   {
     "revision": "3b696c5e8c55321863bfbf03ef0c0ff3",
     "url": "/homepage/static/media/NunitoSans-Light.3b696c5e.ttf"
+  },
+  {
+    "revision": "1f8f5740309e62a563b8a5c9d59ece3b",
+    "url": "/homepage/static/media/NunitoSans-Black.1f8f5740.ttf"
+  },
+  {
+    "revision": "ac72fe0f27dd514aa3215e8424842062",
+    "url": "/homepage/static/media/NunitoSans-Bold.ac72fe0f.ttf"
   },
   {
     "revision": "6b4b63c54b05db2db51dc8f58fd9c7a6",
