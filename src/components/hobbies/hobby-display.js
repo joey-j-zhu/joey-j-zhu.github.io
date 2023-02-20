@@ -61,7 +61,7 @@ const HobbyDisplay = ({
                         height: "1000px",
                     }}
                     >
-                        <HobbyStatement 
+                    <HobbyStatement 
                         description={contents[renderIndex].description} />
                     </div>
                 

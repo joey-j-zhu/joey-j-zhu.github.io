@@ -5,6 +5,7 @@ const HobbyStatement = ({
 }) => {
     return (<div style={{
         width: "550px",
+        marginTop: "150px",
         marginBottom: "50px",
         float: "left",
     }}>

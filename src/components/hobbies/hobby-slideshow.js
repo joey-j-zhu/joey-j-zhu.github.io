@@ -14,7 +14,6 @@ const HobbySlideshow = ({
     const [scrollMode, setScrollMode] = useState(0);
     const scrollIncrement = 0.025;
     
-    
 
     const indexUp = () => {
         if (imageLinks != undefined) {
@@ -53,7 +52,7 @@ const HobbySlideshow = ({
 
     const wraparound = (num, mod) => {
         if (num < 0) {
-            return num % mod + mod;
+            return (num - 1 + mod) % mod + 1;
         } else {
             return num % mod;
         }
@@ -67,7 +66,7 @@ const HobbySlideshow = ({
         var currImage = imageLinks.imageLinks[wraparound(slideshowIndex - 0, images)];
         var nextImage = imageLinks.imageLinks[wraparound(slideshowIndex + 1, images)];
         var nextNextImage = imageLinks.imageLinks[wraparound(slideshowIndex + 2, images)];
-
+        
         return(
         <div style={{
             width: "600px",
