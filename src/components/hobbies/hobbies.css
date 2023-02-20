@@ -14,12 +14,11 @@
     width: var(--page-width); 
     height: 1000px;
     margin: 20px;
+    margin-bottom: 0px;
     padding: 50px;
     padding-left: 100px;
     padding-right: 0px;
     border-top-right-radius: 150px;
-    border-bottom-right-radius: 150px;
-
 
     color: white;
     background-image: linear-gradient(to left, var(--theme-gray-6b), var(--background-color));

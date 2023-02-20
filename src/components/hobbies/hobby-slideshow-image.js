@@ -21,6 +21,8 @@ const [opacity, setOpacity] = useState(0.9);
             margin: "auto",
             bottom: yPosition + 150,
             backgroundColor: THEME_GRAY_6B.getHex(),
+            borderRadius: "20px",
+            overflow: "hidden",
             filter: "drop-shadow(10px 10px 10px #202026)",
         }}>
             <img src={imageLink} 

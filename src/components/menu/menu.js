@@ -31,6 +31,10 @@ function Menu() {
                 float:"right",
                 marginRight: "50px",
                 }}>
+                    <CenterButton
+                    label = "contacts"
+                    navigation = {4000}
+                />
                 <SideButton
                     label = "Email"
                     navigation = "mailto:joey.j.zhu@gmail.com">
@@ -51,16 +55,17 @@ function Menu() {
             <div className="center-options">
                 <CenterButton
                     label = "about"
-                    navigation = {900}
+                    navigation = {700}
                 />
                 <CenterButton
-                    label = "skills"
-                    navigation = {1350}
+                    label = "work"
+                    navigation = {1300}
                 />
                 <CenterButton
-                    label = "services"
-                    navigation = {2500}
+                    label = "gallery"
+                    navigation = {2750}
                 />
+                
             </div>
         </div>
     );

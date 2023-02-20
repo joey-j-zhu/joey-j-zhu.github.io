@@ -11,7 +11,6 @@ import './components/experience/experience.css';
 import './components/fold/fold.css';
 import './components/hobbies/hobbies.css';
 import './components/menu/menu.css';
-import './components/services/services.css';
 
 
 import { default as About } from './components/about/about';
@@ -20,15 +19,12 @@ import { default as Experience } from './components/experience/experience';
 import { default as Fold } from './components/fold/fold';
 import { default as Hobbies } from './components/hobbies/hobbies';
 import { default as Menu } from './components/menu/menu';
-import { default as Services } from './components/services/services';
-
 
 
 registerComponent("about", About);
 registerComponent("fold", Fold);
 registerComponent("experience", Experience);
 registerComponent("hobbies", Hobbies);
-registerComponent("services", Services);
 registerComponent("contacts", Contacts);
 registerComponent("menu", Menu);
 
