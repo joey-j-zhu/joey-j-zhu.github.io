@@ -1,55 +1,62 @@
 import React, { useEffect, useState } from 'react';
 import '../../index.css';
-import { THEME_GRAY_6H, WHITE, interpolateColor, themeTransientCycle, THEME_GREEN } from '../../utils/colors';
+
+import { THEME_GRAY_6H, THEME_GREEN, WHITE,
+    interpolateColor, themeTransientCycle, } from '../../utils/colors';
 import { interpolateTrig } from '../../utils/functions';
 
-import { parseJsonProps, getComponentById, registerComponent } from '../../utils/mapping';
+// TODO: Maybe merge code with SideButton or create a base class/function for hover and transient params
+const CenterButton = (props) => {
 
-const CenterButton = ({
-    label,
-    navigation,
-    fontFamily,
-}) => {
+    const [isHovering, setIsHovering] = useState(false);
+    const [hoverParam, setHoverParam] = useState(0);
+    const [transientParam, setTransientParam] = useState(0);
 
     const incrementSize = 0.05;
     const tickLength = 10;
 
-    const [isHovering, setIsHovering] = useState(false);
-    const [hoverParam, setHoverParam] = useState(0);
-    const [transient, setTransient] = useState(0);
-
     useEffect(() => {
         const interval = setInterval(() => {
-            setTransient(transient > 0 ? transient - incrementSize : 0);
-            setHoverParam(isHovering ? (hoverParam < 1 ? hoverParam + incrementSize : 1) 
-                : (hoverParam > 0 ? hoverParam - incrementSize : 0));
+            setTransientParam(
+                transientParam > 0 ? 
+                    transientParam - incrementSize 
+                    : 0);
+            setHoverParam(
+                isHovering ? 
+                    (hoverParam < 1 ? 
+                        hoverParam + incrementSize 
+                        : 1) 
+                    : (hoverParam > 0 ? 
+                        hoverParam - incrementSize 
+                        : 0));
         }, tickLength);
         return () => clearInterval(interval);
-    }, [hoverParam, setHoverParam, transient, setTransient, isHovering, setIsHovering]);
+    }, [hoverParam, transientParam, isHovering]);
 
     const navigate = () => {
-        setTransient(1);
         window.scrollTo({
-            top: navigation,
+            top: props.navigationPosition,
             behavior: "smooth",
         });
+        setTransientParam(1);
     };
 
-    const renderColor = interpolateColor(THEME_GRAY_6H, THEME_GREEN, hoverParam, interpolateTrig);
-// Rendering
+    const idleColor = interpolateColor(THEME_GRAY_6H, THEME_GREEN, hoverParam, interpolateTrig);
+    const activeColor = WHITE;
+
     return (
         <div className="menu-button" 
         onClick={() => navigate()}
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}>
             <div style={{
-                color: (transient > 0 ?
-                    themeTransientCycle(WHITE, renderColor, 1 - transient, interpolateTrig).getHex()
-                    :
-                    renderColor.getHex()),
-                fontFamily: fontFamily,
-                }}>
-                {label}
+                color: (
+                    transientParam > 0 ?
+                        themeTransientCycle(activeColor, idleColor, 1 - transientParam, interpolateTrig).getHex()
+                        : idleColor.getHex()),
+                fontFamily: props.fontFamily,
+            }}>
+                {props.children}
             </div>
         </div>
     );

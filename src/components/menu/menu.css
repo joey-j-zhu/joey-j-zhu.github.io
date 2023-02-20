@@ -1,47 +1,64 @@
 .menu-section {
+  width: 100%;
+
   position: fixed;
   z-index: 1000;
-  width: 100%;
   top: 0;
   left: 0;
 
-  color: white;
-  overflow: hidden;
   background-color: var(--theme-gray-6b);
+  color: white;
   opacity: 0.95;
+  overflow: hidden;
 }
 
 .menu-overlay {
-  opacity: 0.4;
-  position: absolute;
-  left: 0;
-  top: 0;
   width: 100%;
   height: auto;
-  mix-blend-mode: multiply;
+
+  position: absolute;
   z-index: 200;
+  top: 0;
+  left: 0;
+
+  mix-blend-mode: multiply;
+  opacity: 0.4;
+  overflow: hidden;
 }
 
-.center-options {
+.menu-left-container {
+  margin-left: 50px;
+
+  display: flex;
+  float: left;
+  overflow: hidden;
+}
+
+.menu-right-container {
+  margin-right: 50px;
+  
+  display: flex;
+  float: right;
+}
+
+.menu-middle-container {
   width: 500px;
   display: flex;
 }
-
 
 .menu-button {
   max-height: 50px;
 
   display: flex;
   float: left;
-  
-  font-size: 24px;
-  font-weight: bold;
+  z-index: 10000;
   justify-content: center;
   vertical-align: middle;
   align-items: center;
+  
+  font-size: 24px;
+  font-weight: bold;
   border: 0px;
-
-  z-index: 10000;
 }
 
 .menu-side-button {
@@ -50,21 +67,17 @@
 
   display: flex;
   float: left;
-  
   z-index: 10000;
-
-  font-size: 24px;
-  font-weight: bold;
   justify-content: center;
   vertical-align: middle;
   align-items: center;
+
+  font-size: 24px;
+  font-weight: bold;
   border: 0px;
 }
 
 
-.menu-spacer {
-  min-height: 125px;
-}
 
 
 
