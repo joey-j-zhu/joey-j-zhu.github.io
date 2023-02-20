@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import '../../index.css';
 
 
@@ -11,19 +11,29 @@ function About() {
             <div className="about-section-overlay">
                 <img src="assets/about_me/background.jpg" width="2000px"/>
             </div>
-            <div style={{
-                maxWidth: "1000px"
-            }}>
-                <h2>About Me</h2>
-                <h2>___</h2>
+            <div className="about-description">
+                <h2>{"About Me"}</h2>
+                <h2>{"___"}</h2>
                 <br></br>
+
                 <p>
-                    I first got into programming and graphic design in middle school through making games in Python, JS, and Scratch, inspired by graphics of my favorite websites and games. Studying at UC Berkeley has helped me gain a deep technical foundation, and my experiences at both well-established and fast-growing companies helped me sharpen my talent into the professional skills to work with others to bring ideas to reality.
+                    {"I first got into programming and design in middle school through making games in Python, JS, and Scratch, inspired by graphics of my favorite websites and games. "}
+                    {"I've recently graduated in UC Berkeley where I studied Computer Science and Physics, and gained experience at both fast-growing and well-established companies like Amazon and NimbleRx. "}
                 </p>
                 <br></br>
+
                 <p>
-                    Aside from my CS degree and software experience, I have gained many problem-solving tools and insights through studying physics. The thermodynamic gateway from microscopic to life-size theories has always interested me, and helped me further build my understanding of probability, statistics, and the universality of these concepts in almost every system today.
+                    {"Aside from software and physics, I've spent much of my life exploring music and art, which have given me creative ideas and insights I hope to bring to the development process. "}
+                    {"In turn, studying computer science has helped me understand these artistic subjects at a quantitative level through an analytic, problem-solving lens. "}
+                    {"I believe that code is one of the most versatile creative mediums, and software can give us the power to express ourselves as much as it already positively impacts our lives. "}
                 </p>
+                <br></br>
+                
+                <p>
+                    {"I am currently seeking work as a software engineer and I'm always interested in challenges, synergy, and impact; reach out via my email or LinkedIn to connect!"}
+                </p>
+                <br></br>
+
             </div>
         </div>
     );

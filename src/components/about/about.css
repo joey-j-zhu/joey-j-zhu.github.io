@@ -30,4 +30,8 @@
   z-index: -1000;
   mix-blend-mode: multiply;
 }
+
+.about-description {
+  max-width: 1000px;
+}
   
