@@ -32,7 +32,7 @@ const ExperienceEntry = (props) => {
     };
 
     // Rendering
-    var windowHeight = interpolateTrig(0, 100, transient).toString() + "px";
+    var windowHeight = interpolateTrig(0, 600, transient).toString() + "px";
     var verticalPadding = interpolateTrig(0, 20, transient).toString() + "px";
 
     var renderColor = interpolateColor(THEME_GRAY_6B, THEME_GRAY_6H, hoverParam, interpolateTrig);

@@ -76,6 +76,7 @@
   filter: drop-shadow(10px 10px 10px #202024);
 
   color: var(--theme-gray-4h);
+  opacity: 0.8;
 }
 
 .skill {

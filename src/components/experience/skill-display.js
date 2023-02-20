@@ -1,14 +1,11 @@
 import React from "react";
-import { interpolateTrig } from "../../utils/functions";
-import { Color, interpolateColor, THEME_GREEN_HEX, THEME_GRAY_4H_HEX} from "../../utils/colors";
+import { THEME_GREEN_HEX, THEME_GRAY_4H_HEX} from "../../utils/colors";
 
-const ExperienceDisplay = ({
+const SkillDisplay = ({
     selectedIndex,
     contents,
 }) => {
 
-    var activeColor = "#ffffff";
-    var idleColor = "#909090";
     return (
         <div style={{
             maxWidth: "600px",
@@ -55,4 +52,4 @@ const ExperienceDisplay = ({
     );
 }
 
-export default ExperienceDisplay;
+export default SkillDisplay;
