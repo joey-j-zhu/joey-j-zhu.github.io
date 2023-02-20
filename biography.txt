@@ -1,9 +1,0 @@
-TODO
-
-1. Make canvas into an interactive simulation
-2. Get lower resolution pictures
-3. Sliding gallery
-4. Smooth, hovering captions
-5. Attach resume
-
-6. 
