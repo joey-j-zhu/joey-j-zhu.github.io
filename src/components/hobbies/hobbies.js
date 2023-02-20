@@ -45,9 +45,6 @@ function Hobbies() {
 
             <div className="hobbies">
                 <HobbyDisplay
-                    style={{
-                        float:"right",
-                    }}
                     selectedIndex = {index}
                     contents = {[{
                             "description": "Graphic Design",
