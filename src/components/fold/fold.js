@@ -7,11 +7,11 @@ import FoldCanvas from './fold-canvas';
 
 function Fold() {
     return (
-        <div class="fold-background">
-            <div class="container">
-                <div class="fold-background"><FoldCanvas height={600} width={1300}/></div>
+        <div className="fold-background">
+            <div className="container">
+                <div className="fold-background"><FoldCanvas height={600} width={1300}/></div>
                
-                <div class="box overlay">
+                <div className="box overlay">
                     <div style={{
                         display:"flex",
                         float:"left", 

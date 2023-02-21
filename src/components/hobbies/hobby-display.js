@@ -52,22 +52,22 @@ const HobbyDisplay = ({
         return (
             <div>
                 <div style={{
-                position: "relative", 
-                left: xOffset, 
-                opacity:(scrollMode == -1 ? renderOffset : 1 - renderOffset)}}>
-                    <div style={{
-                        float: "left",
-                        width: "550px",
-                        height: "1000px",
-                    }}
-                    >
-                    <HobbyStatement 
+                    position: "relative", 
+                    left: xOffset, 
+                    opacity:(scrollMode == -1 ? renderOffset : 1 - renderOffset)}}>
+                        
+                    <div style={{float: "left",}}>
+                        <HobbyStatement 
                         description={contents[renderIndex].description} />
                     </div>
+
+                    <div style={{float: "right,"}}>
+                        <HobbySlideshow 
+                        imageLinks={contents[renderIndex]}
+                        renderParams={{renderOffset: renderOffset, scrollMode: scrollMode}}/>
+                    </div>
                 
-                    <HobbySlideshow 
-                    imageLinks={contents[renderIndex]}
-                    renderParams={{renderOffset: renderOffset, scrollMode: scrollMode}}/>
+                    
                 </div>
             </div>
             

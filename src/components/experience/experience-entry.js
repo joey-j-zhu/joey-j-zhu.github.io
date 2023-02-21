@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { interpolateTrig } from "../../utils/functions";
 import "../../index.css";
-import { Color, interpolateColor, THEME_GREEN, THEME_GRAY_4B, THEME_GRAY_6B, THEME_GRAY_6H, WHITE, themeTransientCycle } from "../../utils/colors";
+import { Color, interpolateColor, THEME_GREEN, THEME_GRAY_4B, THEME_GRAY_6B, THEME_GRAY_6H, WHITE, themeTransientCycle, THEME_GRAY_4H } from "../../utils/colors";
 
 const ExperienceEntry = (props) => {
     
@@ -97,6 +97,15 @@ const ExperienceEntry = (props) => {
                     }}>
                         {props.contents.title}
                     </div>
+                </div>
+
+                <div style={{
+                    float: "right",
+                    fontSize: "18px",
+                    fontFamily: 'Nunito Bold',
+                    color: THEME_GRAY_4H.getHex(),
+                }}>
+                    {isSelected ? "⌃" : "⌄"}
                 </div>
             </div>
             {transient > 0 && 

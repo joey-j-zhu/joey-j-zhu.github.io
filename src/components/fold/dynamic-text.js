@@ -55,7 +55,7 @@ const DynamicText = ({
                 indexedSubtitle.map(
                     ([key, character]) => {
                         return(
-                        <font
+                        <font key={key}
                         style={{color:interpolateColor(WHITE, buffer[key], 0.5, interpolateTrig).getHex()}}>
                             {character}
                         </font>);

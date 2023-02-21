@@ -17,13 +17,15 @@ const [opacity, setOpacity] = useState(0.9);
             height: dimension,
             width: dimension,
             zIndex: zIndex,
-            position: "relative",
-            margin: "auto",
             bottom: yPosition + 150,
             backgroundColor: THEME_GRAY_6B.getHex(),
+
+            position: "relative",
+            margin: "auto",
             borderRadius: "20px",
             overflow: "hidden",
-            filter: "drop-shadow(10px 10px 10px #202026)",
+            filter: dimension > 100 ? "drop-shadow(10px 10px 10px #202026)" : "",
+            opacity: dimension > 100 ? 1 : 0,
         }}>
             <img src={imageLink} 
             onMouseEnter={() => {setOpacity(1);}}
@@ -32,7 +34,7 @@ const [opacity, setOpacity] = useState(0.9);
                 height: dimension,
                 width: dimension,
                 aspectRatio: "1 / 1",
-                opacity: opacity * (1 - renderParam * renderParam / 4),
+                opacity: opacity * (1 - renderParam * renderParam / 2),
             }}></img>
         </div>
     );

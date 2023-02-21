@@ -3,14 +3,13 @@ import React from 'react';
 const HobbyStatement = ({
     description,
 }) => {
-    return (<div style={{
-        width: "550px",
-        marginTop: "150px",
-        marginBottom: "50px",
-        float: "left",
-    }}>
+    return (<div className="hobby-statement">
         <h3>___</h3>
-        <p>{description}</p>
+        {description}
+        <br></br>
+        <p>
+            {"Click on the images in the back to cycle through the gallery! "}
+        </p>
     </div>);
 };
 

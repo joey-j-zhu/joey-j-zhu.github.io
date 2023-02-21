@@ -13,7 +13,7 @@ const SkillDisplay = ({
             {Object.entries(contents.skillSections).map(
                 ([skillSectionName, skills]) => {
                     return (
-                        <div style={{
+                        <div key={skillSectionName} style={{
                             margin: "20px",
                             float: "left",
                             minWidth: "250px",
@@ -30,7 +30,7 @@ const SkillDisplay = ({
                                         }
                                     }
                                     return (
-                                        <div 
+                                        <div key={skillName}
                                         className="skill">
                                             <div
                                             style={{

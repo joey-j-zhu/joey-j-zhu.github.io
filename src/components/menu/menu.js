@@ -18,21 +18,20 @@ function Menu() {
             </div>
             
             <div className="menu-right-container">
-                <CenterButton fontFamily = "Nunito Bold"
-                navigation = {4000}>
+                <CenterButton fontFamily = "Nunito Bold" navigationPosition = {4000}>
                     {"contacts"}
                 </CenterButton>
 
                 <SideButton navigation = "mailto:joey.j.zhu@gmail.com">
-                    <i class="fa fa-envelope" fontSize="24px"></i>
+                    <i className="fa fa-envelope" fontSize="24px"></i>
                 </SideButton>
 
                 <SideButton navigation = "https://www.linkedin.com/in/joey-j-zhu">
-                    <i class="fa fa-linkedin-square" fontSize="24px"></i>
+                    <i className="fa fa-linkedin-square" fontSize="24px"></i>
                 </SideButton>
 
                 <SideButton navigation = "https://github.com/np-eazy">
-                    <i class="fa fa-github" fontSize="24px"></i>
+                    <i className="fa fa-github" fontSize="24px"></i>
                 </SideButton>
             </div>
 
