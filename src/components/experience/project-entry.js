@@ -57,7 +57,7 @@ const ProjectEntry = (props) => {
                 borderBottomLeftRadius: transient > 0 ? "0px" : "10px",
                 borderBottomRightRadius: transient > 0 ? "0px" : "10px",
             }}>
-                <div className="entry-overlay" style={{opacity:thumbnailOpacity}}>
+                <div className="entry-overlay" style={{opacity:thumbnailOpacity * 0.4, marginTop:"-50px"}}>
                     <img src={props.contents.thumbnailLink} width="500px" alt={"thumbnail"}/>
                 </div>
                 <div className="entry-overlay-hue">

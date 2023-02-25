@@ -186,7 +186,7 @@ function Experience() {
             date: "FEB 2023 - Present",
             projectName: "Atom Visualizer",
             projectDesc: "Personal Project",
-            thumbnailLink: "assets/projects/atom-s.gif",
+            thumbnailLink: "assets/projects/atom.gif",
           }}>
             <div style={{
               color: WHITE.getHex(),
