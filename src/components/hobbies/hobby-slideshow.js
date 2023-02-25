@@ -109,6 +109,18 @@ const HobbySlideshow = ({
                     zIndex = {0}/>
                 </div>
             </div>
+
+            <div style={{
+                marginLeft: "20px",
+                marginRight: "40px",
+                marginBottom: "50px",
+                maxWidth: "500px",
+                textAlign:"center",
+                }}>
+                    <p>
+                        {"Click on the boxes to learn more about each experience!"}
+                    </p>
+                </div>
         </div>);
     } else {
         return <div></div>;

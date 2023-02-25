@@ -19,7 +19,7 @@ function Menu() {
             
             <div className="menu-right-container">
                 <CenterButton fontFamily = "Nunito Bold"
-                navigation = {4000}>
+                navigationPosition = {4000}>
                     {"contacts"}
                 </CenterButton>
 

@@ -174,7 +174,6 @@ function Experience() {
             </p>
           </div>
         </ExperienceEntry>
-
         <div style={{marginTop: "100px"}}></div>
 
         <div style={{marginBottom: "50px"}}>
@@ -193,10 +192,9 @@ function Experience() {
               color: WHITE.getHex(),
             }}>
               <p>
-                <a href="https://github.com/ECP-WarpX/impactx/issues/104#issuecomment-1275922946">
+                <a href="https://github.com/np-eazy/electron-cloud">
                   <i class="fa fa-external-link" aria-hidden="true"></i>
-
-                  {" Github Repo"}
+                  {" Github Link"}
                 </a>
               </p>
               <br></br>
@@ -210,9 +208,20 @@ function Experience() {
             </div>
           </ProjectEntry>
         </div>
-      </div>
 
-      
+        <div style={{
+          marginLeft: "20px",
+          marginRight: "40px",
+          marginBottom: "50px",
+          maxWidth: "500px",
+          float:"right",
+          textAlign:"center",
+        }}>
+          <p>
+            {"Click on the boxes to learn more about each experience!"}
+          </p>
+        </div>
+      </div>
 
       <div style={{float:"left"}}>
         <SkillDisplay 
@@ -278,6 +287,7 @@ function Experience() {
           }
         }}/>
       </div>
+
     </div>
   );
 }
