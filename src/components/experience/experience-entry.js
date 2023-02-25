@@ -32,10 +32,11 @@ const ExperienceEntry = (props) => {
     };
 
     // Rendering
-    var windowHeight = interpolateTrig(0, 600, transient).toString() + "px";
+    var windowHeight = interpolateTrig(0, 450, transient).toString() + "px";
     var verticalPadding = interpolateTrig(0, 20, transient).toString() + "px";
-
+    var overlayOpacity = interpolateTrig(0, 1, hoverParam).toString();
     var renderColor = interpolateColor(THEME_GRAY_6B, THEME_GRAY_6H, hoverParam, interpolateTrig);
+    var overlayOpacity = interpolateTrig(0, 1, hoverParam).toString();
 
     return (
         <div 
@@ -51,8 +52,23 @@ const ExperienceEntry = (props) => {
                 borderWidth: "1.5px",
                 borderBottomLeftRadius: transient > 0 ? "0px" : "10px",
                 borderBottomRightRadius: transient > 0 ? "0px" : "10px",
+                overflow: "hidden",
             }}>
                 <div>
+                    <div className="entry-overlay-hue">
+                        <div style={{
+                            backgroundColor: transient > 0 ?
+                            themeTransientCycle(THEME_GREEN, renderColor, 1 - transient, interpolateTrig).getHex()
+                            :
+                            renderColor.getHex(),
+                            minHeight: "500px",
+                            minWidth: "500px",
+                            marginLeft: "-20px",
+                            marginTop: "-20px",
+                            opacity: overlayOpacity, 
+                        }}>
+                        </div>
+                    </div>
                     <div style={{
                         fontSize: "14px",
                         fontFamily: 'Nunito Regular',

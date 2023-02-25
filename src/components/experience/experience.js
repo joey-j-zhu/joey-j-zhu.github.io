@@ -4,6 +4,8 @@ import '../../index.css';
 import { default as ExperienceEntry } from './experience-entry';
 import StatementDisplay from './statement-display';
 import SkillDisplay from './skill-display';
+import ProjectEntry from './project-entry';
+import { WHITE } from '../../utils/colors';
 
 
 function Experience() {
@@ -32,8 +34,9 @@ function Experience() {
       </div>
 
       <div style={{
-        marginTop: "300px",
-        minHeight: "0px",
+        marginTop: "350px",
+        minHeight: "10px",
+        minWidth: "10px",
         float: "left",
       }}>
       </div>
@@ -50,6 +53,7 @@ function Experience() {
           date: "AUG 2019 - DEC 2022",
           company: "University of California, Berkeley",
           title: "B.A. Computer Science, Physics Minor",
+          thumbnailLink: "assets/experience/ucb-logo.png",
         }}>
           <div>
             <p>
@@ -80,6 +84,7 @@ function Experience() {
           date: "JAN 2022 - MAY 2022",
           company: "Amazon",
           title: "Fullstack Software Engineer (Intern)",
+          thumbnailLink: "assets/experience/amazon-logo.png",
         }}>
           <div>
             <p>
@@ -114,6 +119,7 @@ function Experience() {
           date: "MAY 2022 - AUG 2022",
           company: "NimbleRx Pharmacy",
           title: "Backend Software Engineer (Intern)",
+          thumbnailLink: "assets/experience/nimblerx-logo.jpg",
         }}>
           <div>
             <p>
@@ -143,6 +149,7 @@ function Experience() {
           date: "AUG 2019 - DEC 2022",
           company: "Lawrence Berkeley Ntl. Lab",
           title: "Software Engineer and Researcher (Intern)",
+          thumbnailLink: "assets/experience/lbnl-logo.jpg",
         }}>
           <div>
             <p>
@@ -167,7 +174,45 @@ function Experience() {
             </p>
           </div>
         </ExperienceEntry>
+
+        <div style={{marginTop: "100px"}}></div>
+
+        <div style={{marginBottom: "50px"}}>
+          <ProjectEntry 
+          selectedIndex = {index}
+          selectIndex = {setIndex}
+          thisIndex = {4}
+          contents = {{
+            location: "Home",
+            date: "FEB 2023 - Present",
+            projectName: "Atom Visualizer",
+            projectDesc: "Personal Project",
+            thumbnailLink: "assets/projects/atom-s.gif",
+          }}>
+            <div style={{
+              color: WHITE.getHex(),
+            }}>
+              <p>
+                <a href="https://github.com/ECP-WarpX/impactx/issues/104#issuecomment-1275922946">
+                  <i class="fa fa-external-link" aria-hidden="true"></i>
+
+                  {" Github Repo"}
+                </a>
+              </p>
+              <br></br>
+              <p>
+                {"  A simulation of a 3D hydrogen(ic) atom, with an electron cloud simulated with particles moving along Bohmian trajectories updated with Runge-Kutta. "}
+                {"  It currently runs on Python and TKinter, but will soon be implemented in C/Rust and rendered using Blender integrations. "}
+              </p>
+              <p>   
+                {"The underlying pilot wave theory of Schrodinger's Equation is rather limited, but its visualizations simultaneously capture both our classical and quantum intuitions of the atom. "} 
+              </p>
+            </div>
+          </ProjectEntry>
+        </div>
       </div>
+
+      
 
       <div style={{float:"left"}}>
         <SkillDisplay 
@@ -203,16 +248,16 @@ function Experience() {
               "Agile Development": [1],
               "Business Software": [1, 2, 3],
               "Customer Software": [2, 3],
-              "Physics Simulations": [3],
+              "Physics Simulations": [3, 4],
               "Quantitative Analysis": [0, 3],
             },
 
             "Backend Languages": {
               "Java (8)": [0, 1, 2],
-              "Python (3)": [0, 3],
-              "C++ (17)": [0, 3],
+              "Python (3)": [0, 3, 4],
+              "C++ (17)": [0, 3, 4],
               "Golang": [0],
-              "OpenMP": [0, 3],
+              "OpenMP": [0, 3, 4],
               "ExecutorService": [2],
             },
 
@@ -220,11 +265,12 @@ function Experience() {
               "Machine Learning": [0],
               "Deep Neural Networks": [0],
               "Cybersecurity": [0],
-              "Algorithm Theory": [0],
+              "Efficient Algorithms": [0, 4],
             },
 
             "Physics Subjects": {
-              "Probabilistic Modeling": [0],
+              "Probabilistic Modeling": [4],
+              "Quantum Mechanics": [4],
               "Statistical Mechanics": [0],
               "Analytical Mechanics": [0],
               "Plasma Dynamics": [0, 3],
