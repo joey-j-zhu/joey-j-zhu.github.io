@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../../index.css';
+import { THEME_GRAY_4H } from '../../utils/colors';
 
 import {default as HobbyButton} from './hobby-button';
 import {default as HobbyDisplay} from './hobby-display';
@@ -49,13 +50,12 @@ function Hobbies() {
                             ]
                         },
                         {
-                            "description": "I have taken drawing, oil painting, and digital art lessons for a total of three years. My favorite art styles are Impressionism and Cubism.",
+                            "description": <p style={{color:THEME_GRAY_4H.getHex()}}>{"I have taken drawing, oil painting, and digital art lessons for a total of three years. My favorite art styles are Impressionism and Cubism."}</p>,
                             "imageLinks": [
                                 "assets/gallery/visual-art/owl-painting.png",
                                 "assets/gallery/visual-art/bear-painting.png",
                                 "assets/gallery/visual-art/fox-painting.png",
                                 "assets/gallery/visual-art/rift-field.png",
-                                "assets/gallery/visual-art/bear-painting.png",
                                 "assets/gallery/visual-art/zebra-painting.png",
                             ]
                         },

@@ -56,12 +56,7 @@ const HobbyButton = ({
         style={{
             color: colorHex,
             border: "1px solid " + borderColorHex,
-            borderRadius: "10px",
             backgroundColor: THEME_GRAY_6B.getHex(),
-            fontFamily: "Nunito Bold",
-            fontSize: "23px",
-            width: "250px",
-            filter: "drop-shadow(10px 10px 10px #101014)",
         }}>
             {label}
         </div>

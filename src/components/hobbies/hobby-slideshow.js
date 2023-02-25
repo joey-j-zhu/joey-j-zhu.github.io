@@ -68,11 +68,7 @@ const HobbySlideshow = ({
         var nextNextImage = imageLinks.imageLinks[wraparound(slideshowIndex + 2, images)];
         
         return(
-        <div style={{
-            width: "600px",
-            height: "1000px",
-            float: "right",
-        }}>
+        <div clasName="hobby-statement">
             <div>
                 <div onClick={indexUp} style={{zIndex: -150}}>
                     <HobbySlideshowImage 

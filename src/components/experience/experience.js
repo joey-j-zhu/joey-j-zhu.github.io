@@ -58,7 +58,7 @@ function Experience() {
           <div>
             <p>
               <a href="https://github.com/np-eazy/fa22-cs182-proj">
-                <i class="fa fa-external-link" aria-hidden="true"></i>
+                <i className="fa fa-external-link" aria-hidden="true"></i>
                 {" CS 182 Project: Quantum Solver Neural Network"}
               </a>
             </p>
@@ -89,13 +89,13 @@ function Experience() {
           <div>
             <p>
               <a href="https://www.amazon.jobs/en/job_categories/legal">
-                <i class="fa fa-external-link" aria-hidden="true"></i>
+                <i className="fa fa-external-link" aria-hidden="true"></i>
                 {" About Amazon Legal"}
               </a>
             </p>
             <p>
               <a href="https://docs.google.com/presentation/d/15Std3z7t5vRNOcDTAjejsS1LZsHvqzqC/edit#slide=id.g1e023731a5e_0_77">
-                <i class="fa fa-external-link" aria-hidden="true"></i>
+                <i className="fa fa-external-link" aria-hidden="true"></i>
                 {" Intern Project Presentation"}
               </a>
             </p>
@@ -124,7 +124,7 @@ function Experience() {
           <div>
             <p>
               <a href="https://www.nimblerx.com/about">
-                <i class="fa fa-external-link" aria-hidden="true"></i>
+                <i className="fa fa-external-link" aria-hidden="true"></i>
                 {" About NimbleRx"}
               </a>
             </p>
@@ -154,14 +154,14 @@ function Experience() {
           <div>
             <p>
               <a href="https://github.com/ECP-WarpX/impactx/issues/104#issuecomment-1275922946">
-                <i class="fa fa-external-link" aria-hidden="true"></i>
+                <i className="fa fa-external-link" aria-hidden="true"></i>
 
                 {" About ImpactX"}
               </a>
             </p>
             <p>
               <a href="https://github.com/ECP-WarpX/impactx/issues/104#issuecomment-1275922946">
-                <i class="fa fa-external-link" aria-hidden="true"></i>
+                <i className="fa fa-external-link" aria-hidden="true"></i>
 
                 {" MadX Parser Design Notes"}
               </a>

@@ -42,11 +42,13 @@ roots.forEach(root => {
 
   const temp = createRoot(root);
 
-  temp.render(
-    <React.StrictMode>
-      <Component />
-    </React.StrictMode>
-  );
+  if (Component != null) {
+    temp.render(
+      <React.StrictMode>
+        <Component />
+      </React.StrictMode>
+    );
+  }
 })
 
 
